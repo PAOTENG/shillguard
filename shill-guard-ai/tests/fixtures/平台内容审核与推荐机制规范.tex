@@ -1,0 +1,311 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!80!black}
+
+\titleformat{\section}{\Large\bfseries\color{blue!50!black}}{第\chinese{section}章}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{blue!40!black}}{\thesubsection}{1em}{}
+
+\title{\textbf{种草平台内容审核与推荐机制规范}}
+\author{ShillGuard 平台运营部}
+\date{2026年7月}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+本文档定义了 ShillGuard 种草社区平台的内容审核标准、违规分级体系、推荐算法策略以及用户行为管理规范。适用于平台所有UGC（用户生成内容）帖子的审核流程、推荐分发、流量调控和用户奖惩管理。运营团队、审核团队和算法团队应共同遵守本规范。
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% =========================================================
+\section{总则}
+
+\subsection{文档目的}
+本规范旨在建立统一的内容质量标准和推荐分发规则，确保平台内容生态健康发展，平衡创作者权益与用户体验，防范虚假种草、营销欺诈和低质内容泛滥。
+
+\subsection{适用范围}
+本规范适用于以下内容形态：
+\begin{itemize}[noitemsep]
+  \item \textbf{图文帖子}：含1--9张图片配文字描述的种草笔记
+  \item \textbf{视频帖子}：时长15秒至10分钟的视频内容
+  \item \textbf{短评与互动}：用户评论区的内容及互动行为
+  \item \textbf{个人主页}：用户昵称、简介、头像等展示信息
+  \item \textbf{直播内容}：实时直播流及直播回放
+\end{itemize}
+
+\subsection{基本原则}
+平台内容管理遵循以下五项基本原则：
+\begin{enumerate}[noitemsep]
+  \item \textbf{真实优先}：优先推荐真实体验类内容，抑制虚假夸大宣传
+  \item \textbf{用户价值}：以用户长期留存和满意度为推荐核心指标
+  \item \textbf{分级管控}：按违规严重程度实施差异化处置措施
+  \item \textbf{透明可申诉}：所有处罚措施均通知用户并提供申诉通道
+  \item \textbf{动态迭代}：定期根据生态变化更新审核规则和推荐权重
+\end{enumerate}
+
+% =========================================================
+\section{内容审核标准}
+
+\subsection{违规内容分级}
+
+平台将违规内容按严重程度分为四个等级，每个等级对应不同的处置措施：
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cllp{5cm}}
+\toprule
+\textbf{等级} & \textbf{名称} & \textbf{处置措施} \\
+\midrule
+P0 & 严重违规 & 立即删除内容，永久封禁账号，上报监管部门 \\
+P1 & 重要违规 & 删除内容，封禁账号30天，降权90天 \\
+P2 & 一般违规 & 限制推荐7天，警告通知，扣减信用分20分 \\
+P3 & 轻微违规 & 降权3天，系统提醒，扣减信用分5分 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{P0级违规行为}
+
+以下行为属于P0级严重违规，一经发现立即执行最高处罚：
+
+\begin{itemize}[noitemsep]
+  \item \textbf{涉政违法内容}：发布危害国家安全、破坏社会稳定的内容
+  \item \textbf{色情低俗内容}：含裸露、色情暗示、低俗擦边等违规图文或视频
+  \item \textbf{毒品枪支相关}：宣传、售卖或教唆使用毒品、枪支等违禁品
+  \item \textbf{诈骗与金融犯罪}：虚假理财、庞氏骗局、虚拟货币非法集资等
+  \item \textbf{未成年人侵害}：涉及未成年人不良引导、剥削或侵害的内容
+  \item \textbf{暴恐血腥内容}：暴力、恐怖、自残、教唆犯罪等极端内容
+\end{itemize}
+
+\subsection{P1级违规行为}
+
+\begin{itemize}[noitemsep]
+  \item \textbf{虚假种草}：未实际使用产品却发布体验评测，或收受利益后发布与事实严重不符的推荐内容
+  \item \textbf{医疗虚假宣传}：非医疗机构发布诊疗方案、夸大保健品功效、违规推荐处方药
+  \item \textbf{导流违规}：在图片或正文中植入微信号、二维码等外部联系方式进行私下导流
+  \item \textbf{抄袭搬运}：盗用他人原创图文或视频，经原创者投诉且查证属实
+  \item \textbf{恶意营销}：利用热点事件编造虚假信息博取流量，造成不良社会影响
+\end{itemize}
+
+\subsection{P2级违规行为}
+
+\begin{itemize}[noitemsep]
+  \item \textbf{标题党}：标题与正文内容严重不符，使用夸张诱导性表述骗取点击
+  \item \textbf{过度P图}：产品效果图中过度修图导致与实物严重不符，误导消费者判断
+  \item \textbf{刷量行为}：通过第三方工具刷点赞、刷收藏、刷评论等虚假互动数据
+  \item \textbf{重复发布}：同一内容在短时间内重复发布3次以上，干扰推荐秩序
+  \item \textbf{不当言论}：评论区人身攻击、地域歧视、性别歧视等不当言论
+\end{itemize}
+
+\subsection{P3级违规行为}
+
+\begin{itemize}[noitemsep]
+  \item \textbf{图片模糊}：主图分辨率低于480p或严重模糊影响阅读体验
+  \item \textbf{分类错误}：帖子选择的分类与实际内容不匹配
+  \item \textbf{排版混乱}：正文缺少分段、字体过大或过小、无意义符号堆砌
+  \item \textbf{标签滥用}：使用与内容无关的热门标签蹭流量，标签数量超过10个
+\end{itemize}
+
+% =========================================================
+\section{推荐算法策略}
+
+\subsection{推荐系统架构}
+
+平台推荐系统采用三阶段漏斗架构：
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{召回阶段}：从千万级内容池中初筛出与用户兴趣相关的候选集，数量约5000条。采用多路召回策略，包括兴趣召回、协同过滤召回、社交召回和热度召回。
+  \item \textbf{粗排阶段}：使用轻量级模型对候选集进行快速打分，筛出约500条进入精排。模型特征包括用户画像、内容画像、上下文特征和实时行为特征。
+  \item \textbf{精排阶段}：使用深度学习模型对500条候选内容精确打分，结合多样性策略和业务规则最终输出50--100条展示内容。
+\end{enumerate}
+
+\subsection{核心排序因子}
+
+精排阶段综合考虑以下因子，各因子权重可动态调整：
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{因子} & \textbf{权重范围} & \textbf{说明} \\
+\midrule
+完播率/阅读完成率 & 0.20--0.30 & 用户是否完整观看视频或读完图文 \\
+互动率 & 0.15--0.25 & 点赞+收藏+评论+转发的综合比例 \\
+关注转化率 & 0.10--0.15 & 看帖后是否关注该创作者 \\
+分享率 & 0.05--0.10 & 帖子被分享到站内或站外的比例 \\
+负反馈率 & -0.15--(-0.05) & 不感兴趣/举报/快速划走的负向信号 \\
+时效性衰减 & 0.05--0.15 & 发布时间越久，流量衰减越大 \\
+创作者信用分 & 0.05--0.10 & 历史表现良好的创作者获得加权 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{流量扶持机制}
+
+平台对新创作者和优质内容设有专项流量扶持：
+
+\begin{itemize}[noitemsep]
+  \item \textbf{新人冷启}：注册30天内的新创作者，前10篇帖子享受额外20\%流量加权
+  \item \textbf{优质内容加码}：被审核标记为"优质"的帖子，获得24小时内保底曝光量5000次
+  \item \textbf{垂直领域扶持}：美妆、数码、美食、旅行四大核心品类享受额外15\%流量倾斜
+  \item \textbf{原创标识加权}：通过原创认证的内容获得10\%推荐加权
+\end{itemize}
+
+\subsection{防沉迷与流量调控}
+
+为避免信息茧房和过度沉迷，平台实施以下调控策略：
+
+\begin{enumerate}[noitemsep]
+  \item 连续浏览同一品类内容超过30分钟时，系统自动插入其他品类内容，比例不低于20\%
+  \item 日活跃时长超过3小时的用户，推荐内容中科普类、知识类内容占比提升至15\%
+  \item 深夜时段（23:00--06:00）降低高刺激类内容推荐权重，增加助眠、放松类内容
+  \item 每周向用户推送一次"内容多样性报告"，鼓励探索新兴趣领域
+\end{enumerate}
+
+% =========================================================
+\section{用户信用体系}
+
+\subsection{信用分规则}
+
+每个用户初始信用分为100分，满分200分。信用分直接影响内容推荐权重和功能权限：
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llp{6cm}}
+\toprule
+\textbf{信用分区间} & \textbf{等级} & \textbf{权限与影响} \\
+\midrule
+150--200 & 优秀 & 推荐加权30\%，优先体验新功能 \\
+100--149 & 正常 & 正常推荐，标准权限 \\
+60--99 & 警告 & 推荐降权20\%，禁止参与活动 \\
+0--59 & 限制 & 推荐降权50\%，禁止发布内容，仅可浏览 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{信用分增减规则}
+
+\textbf{加分项：}
+\begin{itemize}[noitemsep]
+  \item 发布原创优质内容并获"优质"标记：+5分/篇
+  \item 帖子互动率超过品类均值2倍：+3分/篇
+  \item 连续30天无违规记录：+10分
+  \item 积极参与社区互助（回答他人问题等）：+1分/次，每日上限3分
+\end{itemize}
+
+\textbf{扣分项：}
+\begin{itemize}[noitemsep]
+  \item P0级违规：直接归零并封号
+  \item P1级违规：-50分
+  \item P2级违规：-20分
+  \item P3级违规：-5分
+  \item 被用户举报且查证属实：-10分/次
+\end{itemize}
+
+% =========================================================
+\section{审核流程}
+
+\subsection{审核流程概述}
+
+所有用户发布的帖子需经过以下审核流程后方可进入推荐池：
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{机审初筛}（秒级）：AI模型对文本、图片、视频进行自动检测，识别违规风险
+  \item \textbf{风险分级}：根据机审结果将帖子分为"通过""人工复核""拒绝"三类
+  \item \textbf{人工复核}（30分钟内）：审核员对标记为"人工复核"的内容进行人工判断
+  \item \textbf{上线分发}：审核通过的帖子进入推荐池，按推荐策略进行分发
+  \item \textbf{上线后监控}：持续监控已上线内容的用户反馈数据，触发二次审核
+\end{enumerate}
+
+\subsection{二次审核触发条件}
+
+已上线的内容在以下情况下将被重新审核：
+
+\begin{itemize}[noitemsep]
+  \item 帖子举报率超过品类均值3倍
+  \item 帖子负反馈率（不感兴趣+快速划走）超过60\%
+  \item 评论区出现大量违规言论（5条以上P2级违规评论）
+  \item 管理员手动标记复核
+  \item 热榜内容每小时自动巡检
+\end{itemize}
+
+\subsection{申诉机制}
+
+用户对审核结果有异议时，可通过以下流程申诉：
+
+\begin{enumerate}[noitemsep]
+  \item 在处罚通知页面点击"申诉"按钮，填写申诉理由
+  \item 申诉应在收到处罚通知后7天内提交，逾期不再受理
+  \item 申诉团队在3个工作日内完成复审并通知结果
+  \item 对申诉结果仍有异议，可申请二次仲裁由高级审核委员会裁定
+  \item 申诉成功的内容恢复上线，信用分恢复，推荐权重回补
+\end{enumerate}
+
+% =========================================================
+\section{创作者等级体系}
+
+\subsection{等级划分}
+
+平台根据创作者的内容质量、活跃度和影响力划分五个等级：
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llp{5cm}}
+\toprule
+\textbf{等级} & \textbf{名称} & \textbf{准入条件} \\
+\midrule
+L1 & 新手创作者 & 注册即可获得 \\
+L2 & 活跃创作者 & 累计发布20篇原创，总互动超1000 \\
+L3 & 优质创作者 & 累计发布50篇原创，粉丝超5000 \\
+L4 & 签约创作者 & 平台邀请制，粉丝超5万，月均互动超10万 \\
+L5 & 金牌创作者 & 平台特邀，粉丝超50万，行业影响力认证 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{等级权益}
+
+不同等级创作者享受差异化权益：
+
+\begin{itemize}[noitemsep]
+  \item L1：基础发布权限，社区互助功能
+  \item L2：数据分析后台，话题创建权限
+  \item L3：品牌合作入口，专属客服，流量券每月5000曝光
+  \item L4：保底月曝光10万，商业化分成，优先参与平台活动
+  \item L5：专属运营对接，保底月曝光100万，品牌商单优先匹配
+\end{itemize}
+
+\subsection{降级机制}
+
+创作者出现以下情况将被降级：
+
+\begin{itemize}[noitemsep]
+  \item 连续60天未发布原创内容：自动降一级
+  \item 30天内出现2次以上P2级违规：降一级
+  \item 出现1次P1级违规：直接降至L1
+  \item 信用分降至60以下：暂停所有等级权益
+\end{itemize}
+
+% =========================================================
+\section{附则}
+
+\subsection{规范生效与更新}
+本规范自2026年7月1日起生效。平台运营部每季度对规范进行一次全面评估，可根据生态发展需要随时发布补充条款或修订版本。所有更新将在平台公告频道公示7天后正式执行。
+
+\subsection{解释权}
+本规范最终解释权归 ShillGuard 平台运营部所有。如本规范与国家法律法规存在冲突，以法律法规为准。
+
+\end{document}

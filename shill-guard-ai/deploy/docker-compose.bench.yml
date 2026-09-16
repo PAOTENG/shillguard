@@ -1,0 +1,78 @@
+# ================================================================
+# ShillGuard - Agent 公开 Benchmark 专用（与业务中间件分离）
+# 适用：Ubuntu 22.04.x + 已安装 Docker / Compose 插件
+# 虚拟机建议：与业务 compose 同一台 192.168.150.101，但用本文件单独起停
+#
+# 不要直接合并进业务 docker-compose.yml（会和 ES/MySQL 抢内存）。
+# 放置路径示例（在虚拟机上）：
+#   ~/shill-guard-bench/docker-compose.bench.yml
+#
+# 作用：
+#   1) bench-runner：常驻 Ubuntu 工作区，内含 git/python/docker CLI
+#      通过挂载 docker.sock 在「宿主机 Docker」里跑 SWE-bench 等子容器
+#   2) 数据卷落到 ./data，避免塞进业务 volumes
+#
+# 启动：docker compose -f docker-compose.bench.yml up -d
+# 进入：docker compose -f docker-compose.bench.yml exec bench-runner bash
+# 停止：docker compose -f docker-compose.bench.yml down
+# ================================================================
+
+version: "3.8"
+
+networks:
+  shill-bench-net:
+    driver: bridge
+
+volumes:
+  bench_home:
+
+services:
+  # ------------------------------------------------------------
+  # Benchmark 工作区（不是业务服务；用时再 up，用完务必 down）
+  # ------------------------------------------------------------
+  bench-runner:
+    image: ubuntu:22.04
+    container_name: shill-bench-runner
+    restart: "no"
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    environment:
+      TZ: Asia/Shanghai
+      DEBIAN_FRONTEND: noninteractive
+      # 在容器内调用宿主机 Docker
+      DOCKER_HOST: unix:///var/run/docker.sock
+    volumes:
+      # 评测代码与数据集（宿主机目录，请在 VM 上先 mkdir）
+      - ./data:/workspace
+      # 允许在 runner 里执行 docker（跑 SWE-bench 实例容器）
+      - /var/run/docker.sock:/var/run/docker.sock
+      # 可选：持久化容器内 home（pip 缓存等）
+      - bench_home:/root
+    networks:
+      - shill-bench-net
+    # 首次启动自动装基础工具（仅第一次较慢；已安装则 apt 很快跳过）
+    command:
+      - bash
+      - -lc
+      - |
+        set -e
+        apt-get update -qq
+        apt-get install -y -qq ca-certificates curl git python3 python3-pip python3-venv unzip \
+          apt-transport-https gnupg lsb-release
+        # Docker CLI（与 sock 配套；不在容器内再跑 dockerd）
+        if ! command -v docker >/dev/null 2>&1; then
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+          echo "deb [arch=$$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu jammy stable" \
+            > /etc/apt/sources.list.d/docker.list
+          apt-get update -qq
+          apt-get install -y -qq docker-ce-cli
+        fi
+        mkdir -p /workspace/swebench /workspace/agentbench /workspace/reports
+        echo "bench-runner ready. data under /workspace"
+        exec sleep infinity
+    deploy:
+      resources:
+        limits:
+          # 工作区本身不跑模型；子容器占宿主机配额，这里只限制 runner
+          memory: 512M

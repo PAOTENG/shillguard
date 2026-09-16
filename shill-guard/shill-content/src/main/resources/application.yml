@@ -1,0 +1,50 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: shill-content
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shill_guard?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: shillguard123
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: shillguard123
+      database: 1
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: shillguard123
+    virtual-host: /
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 开发期打印完整 SQL，便于定位插入/更新失败的真实语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+logging:
+  level:
+    com.shillguard: debug

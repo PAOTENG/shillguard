@@ -1,0 +1,28 @@
+server:
+  port: 9010
+spring:
+  application:
+    name: shill-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shill_guard?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: shillguard123
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 重置密码默认明文（运行时用 BCrypt 编码后写入）
+admin:
+  default-reset-password: "123456"
+
+logging:
+  level:
+    com.shillguard: debug

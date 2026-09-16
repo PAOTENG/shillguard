@@ -1,0 +1,1059 @@
+{
+  "suite": "chunk_boundary_suite",
+  "case_count": 39,
+  "cases": [
+    {
+      "id": "CB-001",
+      "article_id": "NV-18",
+      "source_file": "01_网络暴力信息治理规定_NV-18.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "跟帖评论 弹幕 点赞 网络暴力信息治理规定",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第十八条　网络信息服务提供者应当加强对跟帖评论信息内容的管理，对以评论、回复、留言、弹幕、点赞等方式制作、复制、发布、传播　　　　　　　　　　　　　　　　　　　　　　　　　　　　　网络暴力信息的，应当及时采取删除、屏蔽、关闭评论、停止提供相关服务等处置措施。【切分锚点-NV18】未完整覆盖处置措施不得单独援引本条；并应保存相关记录，向有关部门报告，禁止只写「加强管理」而无具体措施。",
+      "must_include_anchor": "【切分锚点-NV18】",
+      "must_include_hooks": [
+        "跟帖评论",
+        "弹幕",
+        "点赞"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易误引第十七条视听节目或第十九条论坛条款，漏掉删除/屏蔽/关闭评论等处置",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-002",
+      "article_id": "NV-18",
+      "source_file": "01_网络暴力信息治理规定_NV-18.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "评论区发弹幕骂人、跟帖引战，平台要怎么管，依据哪条",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第十八条　网络信息服务提供者应当加强对跟帖评论信息内容的管理，对以评论、回复、留言、弹幕、点赞等方式制作、复制、发布、传播　　　　　　　　　　　　　　　　　　　　　　　　　　　　　网络暴力信息的，应当及时采取删除、屏蔽、关闭评论、停止提供相关服务等处置措施。【切分锚点-NV18】未完整覆盖处置措施不得单独援引本条；并应保存相关记录，向有关部门报告，禁止只写「加强管理」而无具体措施。",
+      "must_include_anchor": "【切分锚点-NV18】",
+      "must_include_hooks": [
+        "跟帖评论",
+        "弹幕",
+        "点赞"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易误引第十七条视听节目或第十九条论坛条款，漏掉删除/屏蔽/关闭评论等处置",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-003",
+      "article_id": "NV-18",
+      "source_file": "01_网络暴力信息治理规定_NV-18.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "跟帖评论里的网络暴力，是按第十七条视听节目管还是按评论管理条款",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第十八条　网络信息服务提供者应当加强对跟帖评论信息内容的管理，对以评论、回复、留言、弹幕、点赞等方式制作、复制、发布、传播　　　　　　　　　　　　　　　　　　　　　　　　　　　　　网络暴力信息的，应当及时采取删除、屏蔽、关闭评论、停止提供相关服务等处置措施。【切分锚点-NV18】未完整覆盖处置措施不得单独援引本条；并应保存相关记录，向有关部门报告，禁止只写「加强管理」而无具体措施。",
+      "must_include_anchor": "【切分锚点-NV18】",
+      "must_include_hooks": [
+        "跟帖评论",
+        "弹幕",
+        "点赞"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易误引第十七条视听节目或第十九条论坛条款，漏掉删除/屏蔽/关闭评论等处置",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-004",
+      "article_id": "NV-14",
+      "source_file": "02_网络暴力信息治理规定_NV-14.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "信用记录 信用等级 账号信用 网络暴力信息治理规定",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第十四条　网络信息服务提供者应当建立健全用户账号信用管理体系，将涉网络暴力信息违法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布网络暴力信息的，还应当依法依约采取禁止重新注册等处置措施；仅依据前半段表述不得省略黑名单与禁止重新注册要件。",
+      "must_include_anchor": "【切分锚点-NV14】",
+      "must_include_hooks": [
+        "信用记录",
+        "信用等级",
+        "账号信用"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写限制功能，漏掉列入黑名单与禁止重新注册",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-005",
+      "article_id": "NV-14",
+      "source_file": "02_网络暴力信息治理规定_NV-14.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "网暴账号要不要记入信用、拉黑名单，法律怎么规定",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第十四条　网络信息服务提供者应当建立健全用户账号信用管理体系，将涉网络暴力信息违法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布网络暴力信息的，还应当依法依约采取禁止重新注册等处置措施；仅依据前半段表述不得省略黑名单与禁止重新注册要件。",
+      "must_include_anchor": "【切分锚点-NV14】",
+      "must_include_hooks": [
+        "信用记录",
+        "信用等级",
+        "账号信用"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写限制功能，漏掉列入黑名单与禁止重新注册",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-006",
+      "article_id": "NV-14",
+      "source_file": "02_网络暴力信息治理规定_NV-14.md",
+      "law_short": "网络暴力信息治理规定",
+      "query": "网暴用户是限制功能就行，还是要列入黑名单禁止注册",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第十四条　网络信息服务提供者应当建立健全用户账号信用管理体系，将涉网络暴力信息违法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布网络暴力信息的，还应当依法依约采取禁止重新注册等处置措施；仅依据前半段表述不得省略黑名单与禁止重新注册要件。",
+      "must_include_anchor": "【切分锚点-NV14】",
+      "must_include_hooks": [
+        "信用记录",
+        "信用等级",
+        "账号信用"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写限制功能，漏掉列入黑名单与禁止重新注册",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-007",
+      "article_id": "PS-42",
+      "source_file": "03_治安管理处罚法_PS-42.md",
+      "law_short": "治安管理处罚法",
+      "query": "公然侮辱 诽谤他人 散布他人隐私 治安管理处罚法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第四十二条　有下列行为之一的，处五日以下拘留或者五百元以下罚款：（二）公然侮辱他人或者捏造事实诽谤他人的；（六）偷窥、偷拍、窃听、散布他人隐私的。　　　　　　　　　　　　　　　　　情节较重的，处五日以上十日以下拘留，可以并处五百元以下罚款。【切分锚点-PS42】援引本条必须同时写明「情节较重」档处罚幅度，不得只截取五日以下档；亦不得在未达刑事门槛时直接改引刑法第二百四十六条。",
+      "must_include_anchor": "【切分锚点-PS42】",
+      "must_include_hooks": [
+        "公然侮辱",
+        "诽谤他人",
+        "散布他人隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五日以下拘留写成唯一罚则，漏情节较重档，或与刑法侮辱罪混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-008",
+      "article_id": "PS-42",
+      "source_file": "03_治安管理处罚法_PS-42.md",
+      "law_short": "治安管理处罚法",
+      "query": "网上公开骂人诽谤、散布隐私，治安管理怎么处罚",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第四十二条　有下列行为之一的，处五日以下拘留或者五百元以下罚款：（二）公然侮辱他人或者捏造事实诽谤他人的；（六）偷窥、偷拍、窃听、散布他人隐私的。　　　　　　　　　　　　　　　　　情节较重的，处五日以上十日以下拘留，可以并处五百元以下罚款。【切分锚点-PS42】援引本条必须同时写明「情节较重」档处罚幅度，不得只截取五日以下档；亦不得在未达刑事门槛时直接改引刑法第二百四十六条。",
+      "must_include_anchor": "【切分锚点-PS42】",
+      "must_include_hooks": [
+        "公然侮辱",
+        "诽谤他人",
+        "散布他人隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五日以下拘留写成唯一罚则，漏情节较重档，或与刑法侮辱罪混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-009",
+      "article_id": "PS-42",
+      "source_file": "03_治安管理处罚法_PS-42.md",
+      "law_short": "治安管理处罚法",
+      "query": "公然侮辱诽谤只罚五日以下吗，有没有情节较重的档",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第四十二条　有下列行为之一的，处五日以下拘留或者五百元以下罚款：（二）公然侮辱他人或者捏造事实诽谤他人的；（六）偷窥、偷拍、窃听、散布他人隐私的。　　　　　　　　　　　　　　　　　情节较重的，处五日以上十日以下拘留，可以并处五百元以下罚款。【切分锚点-PS42】援引本条必须同时写明「情节较重」档处罚幅度，不得只截取五日以下档；亦不得在未达刑事门槛时直接改引刑法第二百四十六条。",
+      "must_include_anchor": "【切分锚点-PS42】",
+      "must_include_hooks": [
+        "公然侮辱",
+        "诽谤他人",
+        "散布他人隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五日以下拘留写成唯一罚则，漏情节较重档，或与刑法侮辱罪混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-010",
+      "article_id": "CL-246",
+      "source_file": "04_刑法_CL-246.md",
+      "law_short": "刑法",
+      "query": "侮辱罪 诽谤罪 剥夺政治权利 刑法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第二百四十六条　以暴力或者其他方法公然侮辱他人或者捏造事实诽谤他人，情节严重的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人向人民法院告诉，但提供证据确有困难的，人民法院可以要求公安机关提供协助。【切分锚点-CL246】刑事追责须同时具备「情节严重」与告诉程序提示，禁止仅因辱骂用语直接引用本条替代治安处罚。",
+      "must_include_anchor": "【切分锚点-CL246】",
+      "must_include_hooks": [
+        "侮辱罪",
+        "诽谤罪",
+        "剥夺政治权利"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易漏「告诉才处理」与公安机关协助规则，或与治安处罚法混用",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-011",
+      "article_id": "CL-246",
+      "source_file": "04_刑法_CL-246.md",
+      "law_short": "刑法",
+      "query": "网络侮辱诽谤什么情况才构成犯罪、要不要自己去告",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第二百四十六条　以暴力或者其他方法公然侮辱他人或者捏造事实诽谤他人，情节严重的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人向人民法院告诉，但提供证据确有困难的，人民法院可以要求公安机关提供协助。【切分锚点-CL246】刑事追责须同时具备「情节严重」与告诉程序提示，禁止仅因辱骂用语直接引用本条替代治安处罚。",
+      "must_include_anchor": "【切分锚点-CL246】",
+      "must_include_hooks": [
+        "侮辱罪",
+        "诽谤罪",
+        "剥夺政治权利"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易漏「告诉才处理」与公安机关协助规则，或与治安处罚法混用",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-012",
+      "article_id": "CL-246",
+      "source_file": "04_刑法_CL-246.md",
+      "law_short": "刑法",
+      "query": "网上骂人是直接抠刑法侮辱罪，还是先看治安处罚",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第二百四十六条　以暴力或者其他方法公然侮辱他人或者捏造事实诽谤他人，情节严重的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人向人民法院告诉，但提供证据确有困难的，人民法院可以要求公安机关提供协助。【切分锚点-CL246】刑事追责须同时具备「情节严重」与告诉程序提示，禁止仅因辱骂用语直接引用本条替代治安处罚。",
+      "must_include_anchor": "【切分锚点-CL246】",
+      "must_include_hooks": [
+        "侮辱罪",
+        "诽谤罪",
+        "剥夺政治权利"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易漏「告诉才处理」与公安机关协助规则，或与治安处罚法混用",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-013",
+      "article_id": "PI-10",
+      "source_file": "05_个人信息保护法_PI-10.md",
+      "law_short": "个人信息保护法",
+      "query": "非法收集 非法买卖 公开他人 个人信息保护法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第十条　任何组织、个人不得非法收集、使用、加工、传输他人个人信息，不得非法买卖、提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人信息，并区分民事责任与刑法第二百五十三条之一的刑事门槛，禁止只写「删除信息」了事。",
+      "must_include_anchor": "【切分锚点-PI10】",
+      "must_include_hooks": [
+        "非法收集",
+        "非法买卖",
+        "公开他人"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与刑法侵犯公民个人信息罪条号混淆，或只写删帖",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-014",
+      "article_id": "PI-10",
+      "source_file": "05_个人信息保护法_PI-10.md",
+      "law_short": "个人信息保护法",
+      "query": "被人肉搜索曝光身份证电话，个保法能不能管",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第十条　任何组织、个人不得非法收集、使用、加工、传输他人个人信息，不得非法买卖、提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人信息，并区分民事责任与刑法第二百五十三条之一的刑事门槛，禁止只写「删除信息」了事。",
+      "must_include_anchor": "【切分锚点-PI10】",
+      "must_include_hooks": [
+        "非法收集",
+        "非法买卖",
+        "公开他人"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与刑法侵犯公民个人信息罪条号混淆，或只写删帖",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-015",
+      "article_id": "PI-10",
+      "source_file": "05_个人信息保护法_PI-10.md",
+      "law_short": "个人信息保护法",
+      "query": "曝光个人信息是删帖就行，还是个保法禁止非法公开",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第十条　任何组织、个人不得非法收集、使用、加工、传输他人个人信息，不得非法买卖、提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人信息，并区分民事责任与刑法第二百五十三条之一的刑事门槛，禁止只写「删除信息」了事。",
+      "must_include_anchor": "【切分锚点-PI10】",
+      "must_include_hooks": [
+        "非法收集",
+        "非法买卖",
+        "公开他人"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与刑法侵犯公民个人信息罪条号混淆，或只写删帖",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-016",
+      "article_id": "CS-12",
+      "source_file": "06_网络安全法_CS-12.md",
+      "law_short": "网络安全法",
+      "query": "遵守公共秩序 尊重社会公德 使用网络应当 网络安全法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第十二条　任何个人和组织使用网络应当遵守宪法法律，遵守公共秩序，尊重社会公德，不得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱秩序类禁止事项的完整表述，不得缩写成笼统的「不得发布不良信息」。",
+      "must_include_anchor": "【切分锚点-CS12】",
+      "must_include_hooks": [
+        "遵守公共秩序",
+        "尊重社会公德",
+        "使用网络应当"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易缩写成笼统「不得发布不良信息」，或与生态治理规定混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-017",
+      "article_id": "CS-12",
+      "source_file": "06_网络安全法_CS-12.md",
+      "law_short": "网络安全法",
+      "query": "网上造谣传谣扰乱秩序，网络安全法怎么说",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第十二条　任何个人和组织使用网络应当遵守宪法法律，遵守公共秩序，尊重社会公德，不得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱秩序类禁止事项的完整表述，不得缩写成笼统的「不得发布不良信息」。",
+      "must_include_anchor": "【切分锚点-CS12】",
+      "must_include_hooks": [
+        "遵守公共秩序",
+        "尊重社会公德",
+        "使用网络应当"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易缩写成笼统「不得发布不良信息」，或与生态治理规定混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-018",
+      "article_id": "CS-12",
+      "source_file": "06_网络安全法_CS-12.md",
+      "law_short": "网络安全法",
+      "query": "造谣是算不良信息，还是编造传播虚假信息扰乱秩序",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第十二条　任何个人和组织使用网络应当遵守宪法法律，遵守公共秩序，尊重社会公德，不得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱秩序类禁止事项的完整表述，不得缩写成笼统的「不得发布不良信息」。",
+      "must_include_anchor": "【切分锚点-CS12】",
+      "must_include_hooks": [
+        "遵守公共秩序",
+        "尊重社会公德",
+        "使用网络应当"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易缩写成笼统「不得发布不良信息」，或与生态治理规定混淆",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-019",
+      "article_id": "ECO-6",
+      "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+      "law_short": "网络信息内容生态治理规定",
+      "query": "教唆犯罪 凶杀 赌博 网络信息内容生态治理规定",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第六条　网络信息内容生产者不得制作、复制、发布含有下列内容的违法信息：（九）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（十）侮辱或者　　　　　　　　　　　　　　　　　　诽谤他人，侵害他人名誉、隐私和其他合法权益的；（十一）法律、行政法规禁止的其他内容。【切分锚点-ECO6】涉黄处置必须点名本条第九项完整列举，并与平台规则区分，禁止把本条缩写成「不得发布违法信息」而无具体项。",
+      "must_include_anchor": "【切分锚点-ECO6】",
+      "must_include_hooks": [
+        "教唆犯罪",
+        "凶杀",
+        "赌博"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与互联网信息服务管理办法或刑法传播淫秽物品罪错配条号",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-020",
+      "article_id": "ECO-6",
+      "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+      "law_short": "网络信息内容生态治理规定",
+      "query": "发布色情淫秽内容，生态治理规定哪一条禁止",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第六条　网络信息内容生产者不得制作、复制、发布含有下列内容的违法信息：（九）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（十）侮辱或者　　　　　　　　　　　　　　　　　　诽谤他人，侵害他人名誉、隐私和其他合法权益的；（十一）法律、行政法规禁止的其他内容。【切分锚点-ECO6】涉黄处置必须点名本条第九项完整列举，并与平台规则区分，禁止把本条缩写成「不得发布违法信息」而无具体项。",
+      "must_include_anchor": "【切分锚点-ECO6】",
+      "must_include_hooks": [
+        "教唆犯罪",
+        "凶杀",
+        "赌博"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与互联网信息服务管理办法或刑法传播淫秽物品罪错配条号",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-021",
+      "article_id": "ECO-6",
+      "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+      "law_short": "网络信息内容生态治理规定",
+      "query": "色情内容是引用生态治理规定哪一项，不要只写不得违法",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第六条　网络信息内容生产者不得制作、复制、发布含有下列内容的违法信息：（九）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（十）侮辱或者　　　　　　　　　　　　　　　　　　诽谤他人，侵害他人名誉、隐私和其他合法权益的；（十一）法律、行政法规禁止的其他内容。【切分锚点-ECO6】涉黄处置必须点名本条第九项完整列举，并与平台规则区分，禁止把本条缩写成「不得发布违法信息」而无具体项。",
+      "must_include_anchor": "【切分锚点-ECO6】",
+      "must_include_hooks": [
+        "教唆犯罪",
+        "凶杀",
+        "赌博"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易与互联网信息服务管理办法或刑法传播淫秽物品罪错配条号",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-022",
+      "article_id": "IIS-15",
+      "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+      "law_short": "互联网信息服务管理办法",
+      "query": "不得制作 不得传播 复制、发布 互联网信息服务管理办法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第十五条　互联网信息服务提供者不得制作、复制、发布、传播含有下列内容的信息：互联网信息服务提供者还不得传播法律禁止内容。具体包括：　　　　　　　　　　　　　　　　　　　　　　　　　（七）散布谣言，扰乱社会秩序，破坏社会稳定的；（八）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（九）侮辱或者诽谤他人，侵害他人合法权益的；（十）含有法律、行政法规禁止的其他内容的。【切分锚点-IIS15】证据报告若只出现禁止性用语而未列明对应项，视为引用不完整。",
+      "must_include_anchor": "【切分锚点-IIS15】",
+      "must_include_hooks": [
+        "不得制作",
+        "不得传播",
+        "复制、发布"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写「不得制作」而不列具体禁止项",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-023",
+      "article_id": "IIS-15",
+      "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+      "law_short": "互联网信息服务管理办法",
+      "query": "互联网信息服务不得制作传播哪些违法信息",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第十五条　互联网信息服务提供者不得制作、复制、发布、传播含有下列内容的信息：互联网信息服务提供者还不得传播法律禁止内容。具体包括：　　　　　　　　　　　　　　　　　　　　　　　　　（七）散布谣言，扰乱社会秩序，破坏社会稳定的；（八）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（九）侮辱或者诽谤他人，侵害他人合法权益的；（十）含有法律、行政法规禁止的其他内容的。【切分锚点-IIS15】证据报告若只出现禁止性用语而未列明对应项，视为引用不完整。",
+      "must_include_anchor": "【切分锚点-IIS15】",
+      "must_include_hooks": [
+        "不得制作",
+        "不得传播",
+        "复制、发布"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写「不得制作」而不列具体禁止项",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-024",
+      "article_id": "IIS-15",
+      "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+      "law_short": "互联网信息服务管理办法",
+      "query": "管理办法里不得制作传播，具体对应哪几项禁止内容",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第十五条　互联网信息服务提供者不得制作、复制、发布、传播含有下列内容的信息：互联网信息服务提供者还不得传播法律禁止内容。具体包括：　　　　　　　　　　　　　　　　　　　　　　　　　（七）散布谣言，扰乱社会秩序，破坏社会稳定的；（八）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；（九）侮辱或者诽谤他人，侵害他人合法权益的；（十）含有法律、行政法规禁止的其他内容的。【切分锚点-IIS15】证据报告若只出现禁止性用语而未列明对应项，视为引用不完整。",
+      "must_include_anchor": "【切分锚点-IIS15】",
+      "must_include_hooks": [
+        "不得制作",
+        "不得传播",
+        "复制、发布"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只写「不得制作」而不列具体禁止项",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-025",
+      "article_id": "NVGO-insult",
+      "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+      "law_short": "惩治网络暴力指导意见",
+      "query": "肆意谩骂 恶意诋毁 披露隐私 惩治网络暴力指导意见",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "【依法惩治网络侮辱行为】在信息网络上采取肆意谩骂、恶意诋毁、披露隐私等方式，公然侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】必须保留「尚不构成犯罪→治安处罚」分流，禁止半段上下文下一律按刑事侮辱罪表述。",
+      "must_include_anchor": "【切分锚点-NVGO】",
+      "must_include_hooks": [
+        "肆意谩骂",
+        "恶意诋毁",
+        "披露隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易一律按刑事侮辱罪写，漏掉尚不构成犯罪时的治安路径",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-026",
+      "article_id": "NVGO-insult",
+      "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+      "law_short": "惩治网络暴力指导意见",
+      "query": "网络谩骂诋毁披露隐私，是治安案件还是刑事案件",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "【依法惩治网络侮辱行为】在信息网络上采取肆意谩骂、恶意诋毁、披露隐私等方式，公然侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】必须保留「尚不构成犯罪→治安处罚」分流，禁止半段上下文下一律按刑事侮辱罪表述。",
+      "must_include_anchor": "【切分锚点-NVGO】",
+      "must_include_hooks": [
+        "肆意谩骂",
+        "恶意诋毁",
+        "披露隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易一律按刑事侮辱罪写，漏掉尚不构成犯罪时的治安路径",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-027",
+      "article_id": "NVGO-insult",
+      "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+      "law_short": "惩治网络暴力指导意见",
+      "query": "网络侮辱一定按刑事处理吗，不构成犯罪怎么办",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "【依法惩治网络侮辱行为】在信息网络上采取肆意谩骂、恶意诋毁、披露隐私等方式，公然侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】必须保留「尚不构成犯罪→治安处罚」分流，禁止半段上下文下一律按刑事侮辱罪表述。",
+      "must_include_anchor": "【切分锚点-NVGO】",
+      "must_include_hooks": [
+        "肆意谩骂",
+        "恶意诋毁",
+        "披露隐私"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易一律按刑事侮辱罪写，漏掉尚不构成犯罪时的治安路径",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-028",
+      "article_id": "SPC-500",
+      "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+      "law_short": "两高网络诽谤司法解释",
+      "query": "完整口径见后半段 转发次数达到五百 依法审查是否属于 两高网络诽谤司法解释",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "同一诽谤信息实际被转发次数达到五百次以上的，应当依法审查是否属于刑法规定的情节严重。关于点击浏览与转发的完整口径见后半段。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　同一信息实际被点击、浏览次数达到五千次以上，或者转发达到五百次以上的，应当认定为刑法第二百四十六条第一款规定的「情节严重」。【切分锚点-SPC500】点击浏览五千次与转发五百次为并列门槛，缺一不可写入证据。",
+      "must_include_anchor": "【切分锚点-SPC500】",
+      "must_include_hooks": [
+        "完整口径见后半段",
+        "转发次数达到五百",
+        "依法审查是否属于"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五百次/五千次门槛写反或只写其中一个",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-029",
+      "article_id": "SPC-500",
+      "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+      "law_short": "两高网络诽谤司法解释",
+      "query": "诽谤信息转发多少次、点击多少次算情节严重",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "同一诽谤信息实际被转发次数达到五百次以上的，应当依法审查是否属于刑法规定的情节严重。关于点击浏览与转发的完整口径见后半段。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　同一信息实际被点击、浏览次数达到五千次以上，或者转发达到五百次以上的，应当认定为刑法第二百四十六条第一款规定的「情节严重」。【切分锚点-SPC500】点击浏览五千次与转发五百次为并列门槛，缺一不可写入证据。",
+      "must_include_anchor": "【切分锚点-SPC500】",
+      "must_include_hooks": [
+        "完整口径见后半段",
+        "转发次数达到五百",
+        "依法审查是否属于"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五百次/五千次门槛写反或只写其中一个",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-030",
+      "article_id": "SPC-500",
+      "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+      "law_short": "两高网络诽谤司法解释",
+      "query": "情节严重是五百次点击还是五千次点击，转发怎么算",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "同一诽谤信息实际被转发次数达到五百次以上的，应当依法审查是否属于刑法规定的情节严重。关于点击浏览与转发的完整口径见后半段。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　同一信息实际被点击、浏览次数达到五千次以上，或者转发达到五百次以上的，应当认定为刑法第二百四十六条第一款规定的「情节严重」。【切分锚点-SPC500】点击浏览五千次与转发五百次为并列门槛，缺一不可写入证据。",
+      "must_include_anchor": "【切分锚点-SPC500】",
+      "must_include_hooks": [
+        "完整口径见后半段",
+        "转发次数达到五百",
+        "依法审查是否属于"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易把五百次/五千次门槛写反或只写其中一个",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-031",
+      "article_id": "CC-1024",
+      "source_file": "11_民法典_CC1024.md",
+      "law_short": "民法典",
+      "query": "名誉权 社会评价 民事主体 民法典",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "第一千零二十四条　民事主体享有名誉权。任何组织或者个人不得以侮辱、诽谤等方式侵害他人的名誉权。名誉是对民事主体的品德、声望、才能、信用等的社会评价。　　　　　　　　　　　　　　　　【切分锚点-CC1024】民事路径应写明人格评价定义与禁止侮辱诽谤；若上下文被切断，模型常错误改引治安管理处罚法而完全不提民事救济。受害人可依法请求停止侵害、赔偿损失、赔礼道歉。",
+      "must_include_anchor": "【切分锚点-CC1024】",
+      "must_include_hooks": [
+        "名誉权",
+        "社会评价",
+        "民事主体"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只引治安法而完全不提民事名誉权定义",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-032",
+      "article_id": "CC-1024",
+      "source_file": "11_民法典_CC1024.md",
+      "law_short": "民法典",
+      "query": "名誉权被网络侮辱诽谤侵害，民法典怎么保护",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "第一千零二十四条　民事主体享有名誉权。任何组织或者个人不得以侮辱、诽谤等方式侵害他人的名誉权。名誉是对民事主体的品德、声望、才能、信用等的社会评价。　　　　　　　　　　　　　　　　【切分锚点-CC1024】民事路径应写明人格评价定义与禁止侮辱诽谤；若上下文被切断，模型常错误改引治安管理处罚法而完全不提民事救济。受害人可依法请求停止侵害、赔偿损失、赔礼道歉。",
+      "must_include_anchor": "【切分锚点-CC1024】",
+      "must_include_hooks": [
+        "名誉权",
+        "社会评价",
+        "民事主体"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只引治安法而完全不提民事名誉权定义",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-033",
+      "article_id": "CC-1024",
+      "source_file": "11_民法典_CC1024.md",
+      "law_short": "民法典",
+      "query": "侵害名誉权是只引治安法，还是民法典也有依据",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "第一千零二十四条　民事主体享有名誉权。任何组织或者个人不得以侮辱、诽谤等方式侵害他人的名誉权。名誉是对民事主体的品德、声望、才能、信用等的社会评价。　　　　　　　　　　　　　　　　【切分锚点-CC1024】民事路径应写明人格评价定义与禁止侮辱诽谤；若上下文被切断，模型常错误改引治安管理处罚法而完全不提民事救济。受害人可依法请求停止侵害、赔偿损失、赔礼道歉。",
+      "must_include_anchor": "【切分锚点-CC1024】",
+      "must_include_hooks": [
+        "名誉权",
+        "社会评价",
+        "民事主体"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易只引治安法而完全不提民事名誉权定义",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-034",
+      "article_id": "PLAT-ads",
+      "source_file": "12_平台社区规范_PLAT.md",
+      "law_short": "平台社区规范",
+      "query": "微信号 进群领福利 站外引流 平台社区规范",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "【站外引流】在评论或帖子中包含微信号、QQ群号等外部平台联系方式，或以「加微信有优惠」「进群领福利」等方式引导用户到外部平台的，构成站外引流。　　　　　　　　　　　　　　　　　　　【切分锚点-PLAT】平台处置依次为：警告删除 → 限制互动 → 封禁账号；不得在仅命中联系方式半段时直接援引刑法诈骗罪。首次违规以删除警告为主，屡次违规可限制互动直至封禁。",
+      "must_include_anchor": "【切分锚点-PLAT】",
+      "must_include_hooks": [
+        "微信号",
+        "进群领福利",
+        "站外引流"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易直接援引刑法诈骗罪，漏平台处置梯度",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-035",
+      "article_id": "PLAT-ads",
+      "source_file": "12_平台社区规范_PLAT.md",
+      "law_short": "平台社区规范",
+      "query": "评论区留微信号进群领福利算不算站外引流",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "【站外引流】在评论或帖子中包含微信号、QQ群号等外部平台联系方式，或以「加微信有优惠」「进群领福利」等方式引导用户到外部平台的，构成站外引流。　　　　　　　　　　　　　　　　　　　【切分锚点-PLAT】平台处置依次为：警告删除 → 限制互动 → 封禁账号；不得在仅命中联系方式半段时直接援引刑法诈骗罪。首次违规以删除警告为主，屡次违规可限制互动直至封禁。",
+      "must_include_anchor": "【切分锚点-PLAT】",
+      "must_include_hooks": [
+        "微信号",
+        "进群领福利",
+        "站外引流"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易直接援引刑法诈骗罪，漏平台处置梯度",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-036",
+      "article_id": "PLAT-ads",
+      "source_file": "12_平台社区规范_PLAT.md",
+      "law_short": "平台社区规范",
+      "query": "留微信号引流是诈骗罪还是平台站外引流规则",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "【站外引流】在评论或帖子中包含微信号、QQ群号等外部平台联系方式，或以「加微信有优惠」「进群领福利」等方式引导用户到外部平台的，构成站外引流。　　　　　　　　　　　　　　　　　　　【切分锚点-PLAT】平台处置依次为：警告删除 → 限制互动 → 封禁账号；不得在仅命中联系方式半段时直接援引刑法诈骗罪。首次违规以删除警告为主，屡次违规可限制互动直至封禁。",
+      "must_include_anchor": "【切分锚点-PLAT】",
+      "must_include_hooks": [
+        "微信号",
+        "进群领福利",
+        "站外引流"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易直接援引刑法诈骗罪，漏平台处置梯度",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-037",
+      "article_id": "MIN-74",
+      "source_file": "13_未成年人保护法_MIN74.md",
+      "law_short": "未成年人保护法",
+      "query": "诱导沉迷 身心健康 包括暴力 未成年人保护法",
+      "query_style": "precise",
+      "description": "精确关键词 + 法名",
+      "expected_full_article": "网络产品和服务提供者不得向未成年人提供诱导沉迷的产品和服务，不得制作、复制、发布、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自伤」列举；半条命中时常见错误是只写「不得危害未成年人」而无具体内容类型。",
+      "must_include_anchor": "【切分锚点-MIN74】",
+      "must_include_hooks": [
+        "诱导沉迷",
+        "身心健康",
+        "包括暴力"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易笼统写「保护未成年人」而无具体禁止类型",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-038",
+      "article_id": "MIN-74",
+      "source_file": "13_未成年人保护法_MIN74.md",
+      "law_short": "未成年人保护法",
+      "query": "对未成年人发性暗示或诱导内容，法律禁止什么",
+      "query_style": "colloquial",
+      "description": "口语化用户问题",
+      "expected_full_article": "网络产品和服务提供者不得向未成年人提供诱导沉迷的产品和服务，不得制作、复制、发布、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自伤」列举；半条命中时常见错误是只写「不得危害未成年人」而无具体内容类型。",
+      "must_include_anchor": "【切分锚点-MIN74】",
+      "must_include_hooks": [
+        "诱导沉迷",
+        "身心健康",
+        "包括暴力"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易笼统写「保护未成年人」而无具体禁止类型",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    },
+    {
+      "id": "CB-039",
+      "article_id": "MIN-74",
+      "source_file": "13_未成年人保护法_MIN74.md",
+      "law_short": "未成年人保护法",
+      "query": "未成年人保护是只写不得危害，还是要列举性暗示等类型",
+      "query_style": "confusable",
+      "description": "近义易混问法（半条时更易张冠李戴）",
+      "expected_full_article": "网络产品和服务提供者不得向未成年人提供诱导沉迷的产品和服务，不得制作、复制、发布、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自伤」列举；半条命中时常见错误是只写「不得危害未成年人」而无具体内容类型。",
+      "must_include_anchor": "【切分锚点-MIN74】",
+      "must_include_hooks": [
+        "诱导沉迷",
+        "身心健康",
+        "包括暴力"
+      ],
+      "sliding_window_expected": {
+        "article_intact_in_top_chunk": false,
+        "half_hit": true,
+        "risk": "易笼统写「保护未成年人」而无具体禁止类型",
+        "symptom": "检索命中含关键词的前半段 chunk，但缺少切分锚点与后半段罚则/要件；证据报告易出现条款不完整或援引邻近诱饵条款。"
+      },
+      "parent_child_ideal": {
+        "article_intact_in_parent_context": true,
+        "must_include_anchor_in_context": true,
+        "symptom_resolved": "child 命中前半段关键词后回填 parent，生成上下文覆盖完整条款与切分锚点，不再因半条上下文张冠李戴。"
+      }
+    }
+  ]
+}

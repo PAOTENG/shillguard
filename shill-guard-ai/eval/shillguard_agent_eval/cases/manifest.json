@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "description": "ShillGuard-AgentEval v0 — 领域主指标任务清单",
+  "thresholds": {
+    "e1_pass_rate": 0.85,
+    "e2_pass_rate": 0.75,
+    "e3_pass_rate": 0.90
+  },
+  "tasks": [
+    {
+      "id": "E1-R-01",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "网络暴力法律法规", "top_k": 5 },
+      "expect": { "keywords_any": ["惩治网络暴力", "侮辱谩骂"] },
+      "description": "查网暴法规，应召回核心条款"
+    },
+    {
+      "id": "E1-R-02",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "诽谤罪刑事追责500次转发", "top_k": 5 },
+      "expect": { "keywords_any": ["五千次", "五百次", "诽谤"] },
+      "description": "两高司法解释转发门槛"
+    },
+    {
+      "id": "E1-R-03",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "人肉搜索侵犯个人信息", "top_k": 5 },
+      "expect": { "keywords_any": ["个人信息保护法", "侵犯公民个人信息"] },
+      "description": "人肉搜索法律依据"
+    },
+    {
+      "id": "E1-R-04",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "平台封号删帖处置措施", "top_k": 5 },
+      "expect": { "keywords_any": ["关闭账号", "删除信息", "警示"] },
+      "description": "平台处置措施条款"
+    },
+    {
+      "id": "E1-R-05",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "造谣传谣违法后果", "top_k": 5 },
+      "expect": { "keywords_any": ["网络安全法", "散布谣言"] },
+      "description": "造谣传谣法律后果"
+    },
+    {
+      "id": "E1-R-06",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "侮辱诽谤刑事处理", "top_k": 5 },
+      "expect": { "keywords_any": ["刑法", "侮辱", "诽谤"] },
+      "description": "侮辱诽谤刑事责任"
+    },
+    {
+      "id": "E1-R-07",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "网络安全法平台义务", "top_k": 5 },
+      "expect": { "keywords_any": ["网络安全法", "网络运营者"] },
+      "description": "平台网络安全义务"
+    },
+    {
+      "id": "E1-R-08",
+      "suite": "e1",
+      "tool": "rag_search_laws",
+      "fast": true,
+      "input": { "query": "账号信用管理降级封禁", "top_k": 5 },
+      "expect": { "keywords_any": ["信用记录", "列入黑名单"] },
+      "description": "账号信用与黑名单"
+    },
+    {
+      "id": "E1-D-01",
+      "suite": "e1",
+      "tool": "detect_user_score",
+      "fast": false,
+      "input": {
+        "content_list": [
+          "[帖子] 你这种垃圾就该去死，反复发帖骚扰",
+          "[评论] 废物东西，我要人肉你"
+        ]
+      },
+      "expect": { "score_min": 0.7, "score_max": 1.0 },
+      "description": "明显辱骂+威胁，异常分应偏高"
+    },
+    {
+      "id": "E1-D-02",
+      "suite": "e1",
+      "tool": "detect_user_score",
+      "fast": false,
+      "input": {
+        "content_list": ["[帖子] 今天看了部电影，剧情还不错，推荐大家看"]
+      },
+      "expect": { "score_min": 0.0, "score_max": 0.35 },
+      "description": "正常内容，异常分应低"
+    },
+    {
+      "id": "E1-M-01",
+      "suite": "e1",
+      "tool": "moderate_content",
+      "fast": false,
+      "input": {
+        "content_list": ["今天看了部电影，剧情还不错，推荐大家看"],
+        "report_category": 4
+      },
+      "expect": { "action": "none", "score_min": 0.0, "score_max": 0.35 },
+      "description": "明显正常内容 → none"
+    },
+    {
+      "id": "E1-M-02",
+      "suite": "e1",
+      "tool": "moderate_content",
+      "fast": false,
+      "input": {
+        "content_list": ["投资我的平台绝对稳赚，收益高达200%，零风险"],
+        "report_category": 1
+      },
+      "expect": { "action": "auto_mute", "score_min": 0.7, "score_max": 1.0 },
+      "description": "诈骗宣传 → auto_mute"
+    },
+    {
+      "id": "E2-P-01",
+      "suite": "e2",
+      "pipeline": "rag_then_moderate",
+      "fast": false,
+      "input": {
+        "rag_query": "网络暴力",
+        "content_list": ["你这说法根本站不住脚，逻辑有问题"],
+        "report_category": 2
+      },
+      "expect": {
+        "rag_keywords_any": ["网络暴力", "侮辱谩骂", "人身攻击"],
+        "action": "none",
+        "score_min": 0.0,
+        "score_max": 0.55
+      },
+      "description": "先查法再审核：批评观点非人身攻击"
+    },
+    {
+      "id": "E2-P-02",
+      "suite": "e2",
+      "pipeline": "detect_then_evidence",
+      "fast": false,
+      "input": {
+        "content_list": [
+          "[帖子] 你这种垃圾就该去死，反复发帖骚扰",
+          "[评论] 废物东西，一次次来骚扰我，我要人肉你"
+        ]
+      },
+      "expect": {
+        "score_min": 0.85,
+        "evidence_keywords_any": ["网络暴力", "刑法", "治安管理处罚法", "违规"]
+      },
+      "description": "高分用户 → 生成证据报告"
+    },
+    {
+      "id": "E3-C-01",
+      "suite": "e3",
+      "cascade_id": "C-T1-B-01",
+      "fast": true,
+      "description": "T1 黑名单涉黄"
+    },
+    {
+      "id": "E3-C-02",
+      "suite": "e3",
+      "cascade_id": "C-T1-B-06",
+      "fast": true,
+      "description": "T1 黑名单诈骗"
+    },
+    {
+      "id": "E3-C-03",
+      "suite": "e3",
+      "cascade_id": "C-T1-W-01",
+      "fast": true,
+      "description": "T1 白名单"
+    },
+    {
+      "id": "E3-C-04",
+      "suite": "e3",
+      "cascade_id": "C-T2-01",
+      "fast": true,
+      "description": "T2 加权违规"
+    },
+    {
+      "id": "E3-C-05",
+      "suite": "e3",
+      "cascade_id": "C-T3-01",
+      "fast": true,
+      "description": "T3 退回 LLM"
+    },
+    {
+      "id": "E3-C-06",
+      "suite": "e3",
+      "cascade_id": "C-T1-B-19",
+      "fast": true,
+      "description": "T1 人肉搜索"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,chat_stream,"Exception(""ConnError: HTTPConnectionPool(host='localhost', port=8000): Read timed out."")",5,2026-07-07T08:01:03Z,2026-07-07T08:02:52Z
+POST,chat_stream,Exception('TTFT_TIMEOUT>30s'),32,2026-07-07T07:58:08Z,2026-07-07T08:02:13Z

@@ -1,0 +1,21 @@
+{
+  "suite_name": "chunk_boundary_suite",
+  "purpose": "对抗评测：固定长度滑动窗口(500/50)切断完整法条 → 检索命中半条 → 证据引用残缺或张冠李戴",
+  "chunking_under_test": {
+    "strategy": "fixed_sliding_window",
+    "chunk_size": 500,
+    "chunk_overlap": 50,
+    "step": 450,
+    "source_of_truth": "app/rag/indexer.py :: CHUNK_SIZE / CHUNK_OVERLAP / _chunk_text"
+  },
+  "pass_criteria_sliding_window": {
+    "note": "滑动窗口预期 FAIL（证明问题可复现）",
+    "article_intact_in_any_single_chunk_rate_max": 0.15,
+    "half_hit_rate_min": 0.80
+  },
+  "pass_criteria_parent_child_ideal": {
+    "note": "父子切分预期 PASS（本套件记录理想结果，待实现后对照）",
+    "parent_covers_full_article_rate_min": 0.90,
+    "wrong_article_risk_rate_max": 0.10
+  }
+}

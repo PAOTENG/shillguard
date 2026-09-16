@@ -1,0 +1,52 @@
+D:\Environment\Anaconda\envs\agent\Lib\site-packages\jieba\_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+=== session 初始化完成 ===
+[07/06/26 22:27:16] INFO     Processing request of type           server.py:733
+                             ListToolsRequest                                  
+=== 注册工具数: 4 ===
+  - rag_search_laws
+  - moderate_content
+  - detect_user_score
+  - generate_evidence
+
+=== 准备调用 rag_search_laws ===
+                    INFO     Processing request of type           server.py:733
+                             CallToolRequest                                   
+[07/06/26 22:27:17] INFO     HTTP Request: POST                 _client.py:1025
+                             https://dashscope.aliyuncs.com/com                
+                             patible-mode/v1/embeddings                        
+                             "HTTP/1.1 200 OK"                                 
+Building prefix dict from the default dictionary ...
+                    DEBUG    Building prefix dict from the      __init__.py:113
+                             default dictionary ...                            
+Loading model from cache C:\WINDOWS\Temp\jieba.cache
+                    DEBUG    Loading model from cache           __init__.py:132
+                             C:\WINDOWS\Temp\jieba.cache                       
+Loading model cost 1.132 seconds.
+[07/06/26 22:27:19] DEBUG    Loading model cost 1.132 seconds.  __init__.py:164
+Prefix dict has been built successfully.
+                    DEBUG    Prefix dict has been built         __init__.py:166
+                             successfully.                                     
+=== 调用返回 ===
+isError=False, content数=1
+--- content[0] type=TextContent ---
+text: # 最高人民法院、最高人民检察院、公安部关于依法惩治网络暴力违法犯罪的指导意见
+
+> 来源：最高人民法院官方网站
+> 官方网址：https://www.court.gov.cn/fabu/xiangqing/412992.html
+
+## 指导思想
+
+为依法惩治网络暴力违法犯罪活动，有效维护公民人格权益和网络秩序，根据刑法、刑事诉讼法、民法典、民事诉讼法、个人信息保护法、治安管理处罚法及《最高人民法院、最高人民检察院关于办理利用信息网络实施诽谤等刑事案件适用法律若干问题的解释》等法律、司法解释规定，结合执法司法实践，制定本意见。
+
+## 依法惩治网络侮辱行为
+
+在信息网络上采取肆意谩骂、恶意诋毁、披露隐私等方式，公然侮辱他人，情节严重，符合刑法第二百四十六条规定的，以侮辱罪定罪处罚。
+
+## 依法惩治网络诽谤行为
+
+在信息网络上制造、散布谣言，以贬损他人人格、损害他人名誉的行为，情节严重，符合刑法第二百四十六条规定的，以诽谤罪定罪处罚。
+
+组织"人肉搜索"，违法收集并向不特定多数人发布公民个人信息，情节严重，符合刑法第二百五十三条之一规定的，以侵犯公民个人信息罪定罪处罚。
+
+## 依法

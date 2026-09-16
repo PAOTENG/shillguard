@@ -1,0 +1,36 @@
+=== 文件概况 ===
+file_count 1008
+ext {'.md': 1000, '.docx': 2, '.csv': 1, '.txt': 2, '.pptx': 1, '.pdf': 1, '.xlsx': 1}
+prefix_top [('行政法规', 447), ('法律', 324), ('有关法律问题和重大问题的决定', 167), ('法律解释', 26), ('修改、废止的决定', 16), ('其他', 15), ('宪法', 7), ('awlaws', 1), ('个人信息保护法', 1), ('刑法', 1), ('民法典', 1), ('治安管理处罚法', 1)]
+has_yamlish_meta 987
+
+=== 文档字符数 ===
+min/p50/mean/p90/max 211 4507 5958 11607 113482
+doc_size_buckets {'50k+': 4, '<1k': 166, '3-8k': 432, '8-20k': 210, '1-3k': 176, '20-50k': 20}
+
+=== 每文档条款数(第X条) ===
+min/p50/mean/p90/max 0 40 47.7 93 1322
+docs_without_article_pattern 146
+
+=== 单条「第X条」字符数 ===
+count 48053
+min/p50/mean/p90/max 4 86 111 211 96523
+article_len_buckets {'<100': 27686, '100-300': 18752, '300-500': 1399, '500-800': 172, '800-1200': 28, '1200+': 16}
+articles_longer_than_500 214 0.4%
+
+=== 章节 ===
+docs_with_chapter 586
+chapter_per_doc p50/mean/max 6 6.6 168
+
+=== 样例：最短3 / 中位附近3 / 最长3 ===
+short 211 申诉流程.txt articles 0
+short 215 带货违禁清单.csv articles 0
+short 221 有关法律问题和重大问题的决定_全国人民代表大会常务委员会关于教师节的决定.md articles 0
+mid 4507 有关法律问题和重大问题的决定_全国人民代表大会常务委员会关于惩治破坏金融秩序犯罪的决定.md articles 8
+mid 4517 行政法规_护士条例.md articles 37
+mid 4524 行政法规_国家科学技术奖励条例.md articles 39
+long 63043 awlaws_README.md articles 0
+long 96993 行政法规_国务院对确需保留的行政审批项目设定行政许可的决定.md articles 2
+long 113482 法律_中华人民共和国民法典.md articles 1322
+
+platformish_files 5 ['品牌合作规范.docx', '平台审核规范汇总.md', '法律_中华人民共和国社区矫正法.md', '直播规范.pptx', '社区公约.txt']

@@ -1,0 +1,172 @@
+"""用 msgpack 直接解码 blob，并解析 LangChain 消息格式"""
+"""解码 ExtType(code=5)，提取 LangChain 消息的真实文本"""
+import psycopg
+conn = psycopg.connect(
+- 濡傛灉娌℃湁鎵惧埌锛屽彲浠ュ幓銆岃�剧疆銆嶁啋銆屽府鍔╀笌鍙嶉�堛�嶉噷鎼滅储鈥滃垹闄ゅソ鍙嬧�濓紝鎴栫洿鎺ヨ仈绯诲�㈡湇銆�
+
+濡傛灉杩橀渶瑕佸叾浠栧府鍔╋紝闅忔椂鍛婅瘔鎴戙��
+
+=== 瀹屾垚 ===
+
+
+
+
+
+数据全部解码出来了（终端显示的乱码是 Windows 控制台 GBK 编码问题，数据库里存的是正确的 UTF-8）。下面是你这个对话 chat_1783066458289 在三张表里的完整真实样子。
+
+一、checkpoints 表 —— 4 条记录（快照元数据）
+每跑一步图就存一条，记录这一步的"小字段"：
+
+步骤	checkpoint_id	channel_values 里有什么	messages
+step=-1（输入）
+1f176b73-18aa-...
+空 {}
+None
+step=0（rag 节点后）
+1f176b73-18ac-...
+doc_context="", rag_context="", branch:to:rag
+None
+step=1（rag 执行后）
+1f176b73-1ac1-...
+doc_context="", rag_context="《App操作手册》...", branch:to:chat
+None
+step=2（chat 节点后）
+1f176b73-6705-...
+doc_context="", rag_context="《App操作手册》..."
+None
+关键点：channel_values.messages 在所有 4 条记录里都是 None。checkpoints 表只存了 doc_context、rag_context 这种小字符串和分支标记，消息本体根本不在这张表里。
+
+每条记录的完整结构：
+
+{
+  "thread_id": "chat_1783066458289",
+  "checkpoint_ns": "",          # 空字符串=主对话
+  "checkpoint_id": "1f176b73-6705-6c80-...",
+  "parent_checkpoint_id": "1f176b73-1ac1-...",  # 指向上一步
+  "type": None,
+  "metadata": {"step": 2, "source": "loop", "parents": {}},
+  "checkpoint": {               # JSONB
+      "v": 4,                   # 版本号
+      "id": "1f176b73-6705-...",
+      "ts": "2026-07-03T08:14:28.962214+00:00",
+      "channel_values": {
+          "doc_context": "",
+          "rag_context": "《App 操作手册》\n发帖\n1. 底部 \"+\" 按钮\n..."
+          # 注意：没有 messages 键，或者 messages=None
+      }
+  }
+}
+二、checkpoint_blobs 表 —— 3 条记录（消息本体，msgpack 二进制）
+消息全在这里，用 msgpack 编码，每条 blob 是一个 ExtType(code=5)，里面包着 LangChain 的类序列化：
+
+#	channel	version	字节数	内容
+1
+__start__
+...000001.0.614...
+215
+输入时的初始 messages（1 条 HumanMessage）
+2
+messages
+...000002.0.389...
+192
+rag 节点处理后的 messages（1 条 HumanMessage）
+3
+messages
+...000004.0.299...
+1300
+chat 节点处理后的完整 messages（1 Human + 1 AI）
+第 3 条 blob 解码后的真实内容（这就是完整对话）：
+
+[
+  {
+    "class": "langchain_core.messages.human.HumanMessage",
+    "type": "human",
+    "id": "f1b570e2-7976-413c-85a5-a0e6ef14b36c",
+    "content": "怎么删除好友",
+    "additional_kwargs": {},
+    "response_metadata": {},
+    "name": None
+  },
+  {
+    "class": "langchain_core.messages.ai.AIMessage",
+    "type": "ai",
+    "id": "lc_run--019f270b-032a-7173-a9bd-e7fe44881c72",
+    "content": "目前我在可查阅的《App 操作手册》和《账号与安全 FAQ》里没找到"删除好友"的具体说明，手册主要覆盖笔记发布、编辑、删除、评论管理，以及密码、手机号等账号安全问题。\n\n建议你这样尝试：\n- 打开 App 的「我的」页面，看是否有「好友」「关注」「粉丝」等模块...\n- 如果没找到，可以去「设置」→「帮助与反馈」里搜索...\n\n如果还需要其他帮助，随时告诉我。",
+    "additional_kwargs": {},
+    "response_metadata": {
+      "finish_reason": "stop",
+      "model_name": "deepseek-v4-pro",
+      "system_fingerprint": "fp_9954b31ca7_prod0820_...",
+      "model_provider": "openai"
+    },
+    "name": None,
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+      "input_tokens": 564,
+      "output_tokens": 387,
+      "total_tokens": 951,
+      "input_token_details": {"cache_read": 512},
+      "output_token_details": {"reasoning": 255}
+    }
+  }
+]
+三、checkpoint_writes 表 —— 6 条记录（每一轮的增量写入）
+记录每个节点执行后往哪个 channel 写了什么，是增量，不是全量：
+
+#	checkpoint_id	channel	task_id	内容
+1
+...18aa-...(step-1)
+messages
+354cc4d4-...
+新增 [human] 怎么删除好友
+2
+...18aa-...(step-1)
+doc_context
+354cc4d4-...
+写入 ""
+3
+...18aa-...(step-1)
+branch:to:rag
+354cc4d4-...
+分支标记（null）
+4
+...18ac-...(step0)
+rag_context
+a4ec0106-...
+写入 RAG 检索结果
+5
+...18ac-...(step0)
+branch:to:chat
+a4ec0106-...
+分支标记（null）
+6
+...1ac1-...(step1)
+messages
+e291207a-...
+新增 [ai] 目前我在可查阅的...
+四、三张表的关系（一图看懂）
+checkpoints（快照索引）         checkpoint_blobs（大对象存储）      checkpoint_writes（增量日志）
+┌─────────────────────┐       ┌──────────────────────────┐     ┌─────────────────────────┐
+│ checkpoint_id       │       │ version (=checkpoint_id) │     │ checkpoint_id           │
+│ channel_values:     │       │ channel: "messages"      │     │ channel: "messages"     │
+│   doc_context       │←──────│   blob: msgpack二进制     │     │   blob: msgpack(增量)    │
+│   rag_context       │  通过 │   (HumanMessage+AIMessage)│     │   (这一轮新增的消息)      │
+│   messages = None ←─┼──┐   │                          │     │                         │
+└─────────────────────┘  │   └──────────────────────────┘     └─────────────────────────┘
+                         │
+                         └── messages 字段是空的，真正的消息在 blobs 表里
+五、为什么你之前的 history_router.py 取不到数据
+你写的：
+
+messages_raw = checkpoint_data.get("channel_values", {}).get("messages", [])
+channel_values 里有 doc_context、rag_context，但没有 messages 键（或值为 None）
+.get("messages", []) 拿到的是 None 或 []
+所以 messages_raw 永远是空的 → 返回空列表 → 前端显示"未命名对话"
+消息在 checkpoint_blobs 表里，是 msgpack 二进制，里面是 LangChain 类对象序列化格式，用普通 SQL + JSON 解析根本读不出来。必须用 LangGraph 的 graph.aget_state(config)，它会自动：
+
+从 checkpoints 表取最新快照
+用快照里的 version 去 checkpoint_blobs 表取对应的 blob
+用 msgpack + LangChain 反序列化器把 blob 还原成 HumanMessage/AIMessage 对象
+塞进 state.values["messages"] 返回给你
+这就是为什么我让你改用 graph.aget_state() 的原因。需要我帮你把 history_router.py 改好吗

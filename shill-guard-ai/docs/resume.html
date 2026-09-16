@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简历 - 【姓名】</title>
+<style>
+  @page { margin: 14mm 12mm; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans CJK SC", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 28px;
+  }
+
+  .header { text-align: center; margin-bottom: 10px; }
+  .header h1 { font-size: 20pt; font-weight: 700; letter-spacing: 4px; color: #111; margin-bottom: 6px; }
+  .header .contact {
+    font-size: 9pt; color: #444;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px;
+  }
+  .header .contact span::before { content: "· "; color: #aaa; }
+  .header .contact span:first-child::before { content: ""; }
+  .header .intent { margin-top: 6px; font-size: 9.5pt; color: #555; letter-spacing: 1px; }
+  .header .intent strong { color: #c0392b; }
+
+  .section { margin-top: 12px; }
+  .section-title {
+    font-size: 11pt; font-weight: 700; color: #c0392b;
+    border-bottom: 1.5px solid #c0392b;
+    padding-bottom: 2px; margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .skills-table { width: 100%; border-collapse: collapse; }
+  .skills-table td { padding: 3px 0; vertical-align: top; font-size: 9.5pt; }
+  .skills-table td:first-child {
+    white-space: nowrap; font-weight: 600; color: #333;
+    width: 120px; padding-right: 10px;
+  }
+  .skills-table td:last-child { color: #444; }
+
+  .project { margin-bottom: 16px; }
+  .project-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .project-name { font-size: 11pt; font-weight: 700; color: #111; }
+  .project-name .stack { font-size: 9pt; font-weight: 400; color: #888; margin-left: 8px; }
+  .project-desc {
+    font-size: 9pt; color: #555; margin: 4px 0 6px;
+    line-height: 1.5; border-left: 3px solid #e5e5e5; padding-left: 8px;
+  }
+  .sub-title { font-size: 9.5pt; font-weight: 600; color: #333; margin: 6px 0 3px; }
+
+  ul { padding-left: 16px; }
+  ul li { font-size: 9.5pt; color: #222; margin-bottom: 4px; line-height: 1.55; }
+  ul li strong { color: #c0392b; }
+  ul li code {
+    font-family: Consolas, Monaco, monospace; font-size: 8.5pt;
+    background: #f5f5f5; padding: 0 3px; border-radius: 2px; color: #333;
+  }
+
+  /* 占位符样式 */
+  .placeholder-block {
+    border: 1.5px dashed #ccc;
+    border-radius: 6px;
+    padding: 12px 16px;
+    background: #fafafa;
+    margin-bottom: 4px;
+  }
+  .placeholder-block .ph-title {
+    font-size: 10pt; font-weight: 600; color: #888; margin-bottom: 8px;
+  }
+  .placeholder-block ul li { color: #aaa; font-style: italic; }
+
+  .edu { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+  .edu-name { font-size: 11pt; font-weight: 700; color: #111; }
+  .edu-detail { font-size: 9.5pt; color: #444; margin-top: 3px; }
+  .edu-date { font-size: 9pt; color: #888; }
+
+  .other-list { list-style: none; padding: 0; }
+  .other-list li { font-size: 9.5pt; color: #333; margin-bottom: 3px; padding-left: 14px; position: relative; }
+  .other-list li::before { content: "▸"; position: absolute; left: 0; color: #c0392b; }
+
+  .print-tip {
+    text-align: center; margin-bottom: 16px;
+    padding: 8px; background: #fff8e1;
+    border: 1px solid #ffe082; border-radius: 4px;
+    font-size: 9pt; color: #795548;
+  }
+
+  hr.divider { border: none; border-top: 1px solid #eee; margin: 3px 0 8px; }
+</style>
+</head>
+<body>
+
+<div class="print-tip no-print">
+  📄 打印为 PDF：按 <strong>Ctrl + P</strong>（Mac: ⌘ + P）→ 目标打印机选"另存为 PDF"→ 取消页眉页脚 → 保存
+</div>
+
+<!-- ══ 顶部 ══ -->
+<div class="header">
+  <h1>【姓　名】</h1>
+  <div class="contact">
+    <span>📱 1xx-xxxx-xxxx</span>
+    <span>✉️ xxx@xxx.com</span>
+    <span>🔗 github.com/【GitHub ID】</span>
+    <span>📍 【求职城市】</span>
+  </div>
+  <div class="intent">求职意向：<strong>AI Agent 开发工程师 · 大模型应用工程师</strong></div>
+</div>
+
+<!-- ══ 技术栈 ══ -->
+<div class="section">
+  <div class="section-title">技术栈</div>
+  <table class="skills-table">
+    <tr>
+      <td>Agent / LLM 工程</td>
+      <td>LangGraph（StateGraph、并行节点、Human-in-the-Loop）· LangChain（Tool Calling、Memory）· Prompt Engineering · Context Engineering · 多 Agent 协作（意图路由、子 Agent 编排）· MCP 工具调用协议</td>
+    </tr>
+    <tr>
+      <td>RAG / 向量检索</td>
+      <td>混合检索（向量 + BM25 / Elasticsearch）· Reranker 重排序 · ChromaDB / pgvector / Elasticsearch · text-embedding-v3 向量化</td>
+    </tr>
+    <tr>
+      <td>后端工程</td>
+      <td>Python（asyncio · Pydantic · FastAPI · SSE 流式）· Java（Spring Boot · MyBatis · MySQL）· Redis · PostgreSQL / pgvector · Docker</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══ 项目经历 ══ -->
+<div class="section">
+  <div class="section-title">项目经历</div>
+
+  <!-- 项目一 -->
+  <div class="project">
+    <div class="project-header">
+      <div class="project-name">
+        ShillGuard · UGC 内容治理 AI 助手
+        <span class="stack">Python · LangGraph · RAG · FastAPI · PostgreSQL</span>
+      </div>
+    </div>
+    <div class="project-desc">
+      基于 LangGraph + RAG + mem0 的 UGC 社区内容治理 AI 助手，面向短视频平台内容审核与用户咨询场景，支持违规内容智能研判、国家法规与平台规则语义检索、多轮对话及实时流式输出。
+    </div>
+
+    <div class="sub-title">个人工作</div>
+    <ul>
+      <li>设计 LangGraph 四节点 Agent 架构（memory + rag <strong>并行</strong> → context_processor → chat），实现 Worker LLM 上下文隔离策略（Isolate），消除多轮对话"回声污染"，跨会话用户信息准确回忆率从约 40% 提升至约 <strong>90%</strong>，总请求延迟从约 7.2s 降至 <strong>3.8s（↓47%）</strong></li>
+      <li>构建向量（ChromaDB）+ BM25（Elasticsearch）+ Reranker API 三阶段混合检索链，实现 <strong>Adaptive RAG Query Routing</strong>（LLM yes/no 路由判断），无关查询跳过全流程节省 <strong>2~4s</strong>，相关查询 Top-5 召回率提升约 <strong>20%</strong></li>
+      <li>实现三层记忆架构：滑动窗口（最近 8 条）+ LLM 摘要压缩（HumanMessage 边界对齐）+ mem0 长期跨会话记忆；将 mem0 向量后端从 ChromaDB 迁移至 <strong>pgvector</strong>，消除 spaCy 依赖和 BM25 不支持警告</li>
+      <li>对全链路 6 个外部调用统一添加 <code>asyncio.wait_for</code> 超时保护，P99 等待时间从 <strong>22s 降至 5s</strong> 以内；禁用 PostHog / LangSmith 后台遥测，消除 3~5s 网络噪声</li>
+      <li>接入 <strong>MCP Server</strong> 四类工具（法规 RAG 检索、内容审核打分、恶意用户检测、禁言证据生成），实现内容治理全链路工具调用闭环</li>
+      <li>实现 FastAPI + <strong>SSE 流式 token 推送</strong>，前端实时渲染 Markdown + 代码高亮；构建<strong>双轨存储</strong>（PostgreSQL <code>chat_messages</code> + LangGraph checkpoint），解耦 UI 历史与 LLM 工作记忆</li>
+    </ul>
+
+    <div class="sub-title">项目难点</div>
+    <ul>
+      <li><strong>Thinking 模型兼容性</strong>：DeepSeek-R1 等 thinking 模型不支持 <code>tool_choice</code>（报 400 错误）。方案：移除 <code>with_structured_output</code>，改为 Prompt-based JSON Schema 注入 + 手动解析 + 降级兜底，结构化提炼成功率稳定在 <strong>~95%</strong></li>
+      <li><strong>LangGraph 工具消息原子性</strong>：滑动窗口截断后 <code>AIMessage(tool_calls)</code> 与对应 <code>ToolMessage</code> 被分割导致 <code>BadRequestError</code>。方案：重写 <code>_sanitize_window</code>，将工具调用消息组视为<strong>原子单元</strong>整组保留，彻底消除孤儿消息错误</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 项目二：占位符 -->
+  <div class="project">
+    <div class="project-header">
+      <div class="project-name">
+        【项目名称】
+        <span class="stack">Python · 【技术栈关键词，例如 LangGraph · CrewAI · FastAPI】</span>
+      </div>
+    </div>
+    <div class="project-desc">
+      【一句话项目描述：面向什么场景、解决什么核心问题、支持哪些核心功能】
+    </div>
+
+    <div class="placeholder-block no-print" style="margin-bottom:8px;">
+      <div class="ph-title">✏️ 待填写区域（打印时不显示）— 参考四要素写法：</div>
+      <ul>
+        <li>个人工作：行动动词 + 技术决策 + 量化结果（有基线有对比）</li>
+        <li>项目难点：具体问题根因 → 解决方案 → 效果数据</li>
+        <li>量化指标参考：准确率 / 延迟 / QPS / Token成本 / 幻觉率</li>
+      </ul>
+    </div>
+
+    <div class="sub-title">个人工作</div>
+    <ul>
+      <li>【技术决策 + 量化结果】</li>
+      <li>【技术决策 + 量化结果】</li>
+      <li>【技术决策 + 量化结果】</li>
+      <li>【技术决策 + 量化结果】</li>
+    </ul>
+
+    <div class="sub-title">项目难点</div>
+    <ul>
+      <li><strong>【难点名称】</strong>：【问题根因 → 解决方案 → 效果】</li>
+      <li><strong>【难点名称】</strong>：【问题根因 → 解决方案 → 效果】</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 教育背景 ══ -->
+<div class="section">
+  <div class="section-title">教育背景</div>
+  <div class="edu">
+    <div>
+      <div class="edu-name">【院校名称】</div>
+      <div class="edu-detail">【专业名称】 · 本科 / 硕士 &nbsp;｜&nbsp; 主修：数据结构、计算机网络、数据库原理、操作系统、算法设计 &nbsp;｜&nbsp; GPA：xx/4.0</div>
+    </div>
+    <div class="edu-date">20xx.09 — 20xx.06</div>
+  </div>
+</div>
+
+<!-- ══ 其他信息 ══ -->
+<div class="section">
+  <div class="section-title">其他信息</div>
+  <ul class="other-list">
+    <li><strong>GitHub</strong>：github.com/【你的ID】（含 ShillGuard 项目完整代码及架构文档）</li>
+    <li><strong>技术博客</strong>：【如有可填写】</li>
+    <li><strong>奖项 / 证书</strong>：【如有可填写，例如：国家奖学金 / 蓝桥杯 xx 奖 / 阿里云 ACP 认证】</li>
+  </ul>
+</div>
+
+</body>
+</html>

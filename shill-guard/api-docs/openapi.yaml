@@ -1,0 +1,1636 @@
+openapi: 3.0.3
+
+info:
+  title: ShillGuard API
+  description: |
+    ShillGuard 水军智能检测系统接口文档。
+    
+    ## 认证说明
+    登录成功后获取 `token`，后续所有需要认证的接口请在请求头添加：
+    ```
+    Authorization: Bearer <token>
+    ```
+    网关会自动解析 token 并注入 `X-User-Id`、`X-User-Role` 头，微服务内部通过这两个头识别用户身份。
+    
+    ## 角色权限
+    | role 值 | 说明 |
+    |---------|------|
+    | 0 | 普通用户 |
+    | 1 | 版主 |
+    | 2 | 管理员 |
+    
+    ## 统一响应格式
+    所有接口均返回统一格式：
+    ```json
+    {
+      "code": 200,
+      "message": "操作成功",
+      "data": {}
+    }
+    ```
+  version: 1.0.0
+  contact:
+    name: ShillGuard Team
+
+servers:
+  - url: http://localhost:8080
+    description: 本地开发环境（API 网关）
+  - url: http://localhost:3001/api
+    description: 前端代理（开发调试）
+
+tags:
+  - name: 认证
+    description: 用户登录、注册、退出
+  - name: 用户
+    description: 用户信息管理
+  - name: 帖子
+    description: 帖子发布与管理
+  - name: 评论
+    description: 评论发表与管理
+  - name: 文件
+    description: 图片、视频、头像上传
+  - name: Agent检测
+    description: 水军检测与禁言管理（需管理员权限）
+
+# ===================== 组件定义 =====================
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 登录后获取的 JWT Token
+
+  schemas:
+    # 统一响应包装
+    Result:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 业务状态码
+          example: 200
+        message:
+          type: string
+          description: 响应消息
+          example: 操作成功
+        data:
+          description: 响应数据（类型随接口不同而变化）
+
+    ResultVoid:
+      allOf:
+        - $ref: '#/components/schemas/Result'
+        - type: object
+          properties:
+            data:
+              type: object
+              nullable: true
+              example: null
+
+    # 分页结构
+    PageInfo:
+      type: object
+      properties:
+        records:
+          type: array
+          description: 数据列表
+        total:
+          type: integer
+          format: int64
+          description: 总记录数
+          example: 128
+        size:
+          type: integer
+          description: 每页大小
+          example: 10
+        current:
+          type: integer
+          description: 当前页码
+          example: 1
+        pages:
+          type: integer
+          description: 总页数
+          example: 13
+
+    # 登录请求
+    LoginDTO:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          description: 用户名（登录账号）
+          example: admin
+        password:
+          type: string
+          description: 登录密码（明文，传输层加密）
+          example: "123456"
+
+    # 注册请求
+    RegisterDTO:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          minLength: 3
+          maxLength: 20
+          description: 用户名，3-20位
+          example: testuser
+        password:
+          type: string
+          minLength: 6
+          maxLength: 30
+          description: 密码，6-30位
+          example: "password123"
+        nickname:
+          type: string
+          description: 昵称（可选）
+          example: 测试用户
+        phone:
+          type: string
+          description: 手机号（可选）
+          example: "13800138000"
+        email:
+          type: string
+          format: email
+          description: 邮箱（可选）
+          example: test@example.com
+
+    # 登录响应
+    LoginVO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: 用户ID
+          example: 1001
+        username:
+          type: string
+          description: 用户名
+          example: admin
+        nickname:
+          type: string
+          description: 昵称
+          example: 管理员
+        avatarUrl:
+          type: string
+          description: 头像URL
+          example: "http://localhost:9000/shill-guard/avatars/abc.jpg"
+        role:
+          type: integer
+          description: 角色（0=普通用户 1=版主 2=管理员）
+          example: 2
+        token:
+          type: string
+          description: JWT Token，后续请求放入 Authorization 头
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        expireIn:
+          type: integer
+          format: int64
+          description: Token有效期（秒）
+          example: 86400
+
+    # 用户信息
+    SysUser:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: 用户ID
+          example: 1001
+        username:
+          type: string
+          description: 用户名
+          example: admin
+        nickname:
+          type: string
+          description: 昵称
+          example: 管理员
+        avatarUrl:
+          type: string
+          nullable: true
+          description: 头像URL
+          example: "http://localhost:9000/shill-guard/avatars/abc.jpg"
+        role:
+          type: integer
+          description: 角色（0=普通用户 1=版主 2=管理员）
+          example: 0
+        status:
+          type: integer
+          description: 状态（0=正常 1=禁言 2=禁用）
+          example: 0
+        createdTime:
+          type: string
+          format: date-time
+          description: 注册时间
+          example: "2024-01-15T10:30:00"
+
+    # 发布帖子请求
+    PostCreateDTO:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+          description: 帖子标题（必填）
+          example: 分享一个好用的摄影技巧
+        content:
+          type: string
+          description: 帖子正文内容（必填）
+          example: 今天分享一个超实用的构图技巧，三分法则...
+        coverUrl:
+          type: string
+          nullable: true
+          description: 封面图URL（由文件服务上传后获取）
+          example: "http://localhost:9000/shill-guard/images/cover.jpg"
+        mediaUrl:
+          type: string
+          nullable: true
+          description: 媒体资源URL（视频/图组）
+          example: "http://localhost:9000/shill-guard/videos/video.mp4"
+        postType:
+          type: integer
+          description: 帖子类型（1=纯文字 2=图文 3=视频）
+          enum: [1, 2, 3]
+          example: 2
+        topicTag:
+          type: string
+          nullable: true
+          description: 话题标签
+          example: 摄影
+
+    # 帖子实体
+    ContentPost:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+          description: 帖子ID
+          example: 2001
+        userId:
+          type: integer
+          format: int64
+          description: 发布者用户ID
+          example: 1001
+        username:
+          type: string
+          description: 发布者用户名
+          example: user01
+        nickname:
+          type: string
+          description: 发布者昵称
+          example: 摄影爱好者
+        avatarUrl:
+          type: string
+          nullable: true
+          description: 发布者头像URL
+          example: "http://localhost:9000/shill-guard/avatars/a.jpg"
+        title:
+          type: string
+          description: 帖子标题
+          example: 分享一个好用的摄影技巧
+        content:
+          type: string
+          description: 帖子内容
+          example: 今天分享一个超实用的构图技巧...
+        coverUrl:
+          type: string
+          nullable: true
+          description: 封面图URL
+          example: "http://localhost:9000/shill-guard/images/cover.jpg"
+        mediaUrl:
+          type: string
+          nullable: true
+          description: 媒体URL
+        postType:
+          type: integer
+          description: 帖子类型（1=纯文字 2=图文 3=视频）
+          example: 2
+        topicTag:
+          type: string
+          nullable: true
+          description: 话题标签
+          example: 摄影
+        viewCount:
+          type: integer
+          description: 浏览数
+          example: 1024
+        likeCount:
+          type: integer
+          description: 点赞数
+          example: 88
+        commentCount:
+          type: integer
+          description: 评论数
+          example: 23
+        isLiked:
+          type: boolean
+          description: 当前用户是否已点赞（需登录）
+          example: false
+        status:
+          type: integer
+          description: 状态（0=正常 1=删除）
+          example: 0
+        createdTime:
+          type: string
+          format: date-time
+          description: 发布时间
+          example: "2024-06-15T14:30:00"
+
+    # 发表评论请求
+    CommentCreateDTO:
+      type: object
+      required:
+        - postId
+        - content
+      properties:
+        postId:
+          type: integer
+          format: int64
+          description: 所属帖子ID（必填）
+          example: 2001
+        content:
+          type: string
+          description: 评论内容（必填）
+          example: 写得真好，学到了！
+        parentCommentId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 父评论ID（为null则为一级评论，有值则为回复）
+          example: null
+        replyToUserId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 被回复用户ID（回复评论时填写）
+          example: null
+
+    # 评论实体
+    ContentComment:
+      type: object
+      properties:
+        commentId:
+          type: integer
+          format: int64
+          description: 评论ID
+          example: 3001
+        userId:
+          type: integer
+          format: int64
+          description: 评论者用户ID
+          example: 1001
+        username:
+          type: string
+          description: 评论者用户名
+          example: user01
+        nickname:
+          type: string
+          description: 评论者昵称
+          example: 小红
+        avatarUrl:
+          type: string
+          nullable: true
+          description: 评论者头像
+          example: "http://localhost:9000/shill-guard/avatars/a.jpg"
+        postId:
+          type: integer
+          format: int64
+          description: 所属帖子ID
+          example: 2001
+        parentCommentId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 父评论ID（null=一级评论）
+          example: null
+        replyToUserId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 被回复用户ID
+          example: null
+        content:
+          type: string
+          description: 评论内容
+          example: 写得真好，学到了！
+        likeCount:
+          type: integer
+          description: 点赞数
+          example: 5
+        status:
+          type: integer
+          description: 状态（0=正常 1=删除）
+          example: 0
+        createdTime:
+          type: string
+          format: date-time
+          description: 评论时间
+          example: "2024-06-15T15:00:00"
+
+    # 禁言记录实体
+    AgentMuteRecord:
+      type: object
+      properties:
+        muteId:
+          type: integer
+          format: int64
+          description: 禁言记录ID
+          example: 4001
+        mutedUserId:
+          type: integer
+          format: int64
+          description: 被禁言用户ID
+          example: 1005
+        reporterUserId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 举报人用户ID（可为空）
+          example: null
+        reviewerUserId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 审核人ID（人工操作时有值）
+          example: 1001
+        relatedCommentId:
+          type: integer
+          format: int64
+          nullable: true
+          description: 关联违规评论ID
+          example: 3005
+        muteReason:
+          type: string
+          description: 禁言原因
+          example: 系统检测到该用户属于水军群组，协同刷评论
+        muteDays:
+          type: integer
+          description: 禁言天数
+          example: 7
+        muteType:
+          type: integer
+          description: 禁言类型（0=Agent自动 1=人工）
+          enum: [0, 1]
+          example: 0
+        status:
+          type: integer
+          description: 状态（1=禁言中 0=已解除）
+          enum: [0, 1]
+          example: 1
+        createdTime:
+          type: string
+          format: date-time
+          description: 创建时间
+          example: "2024-06-15T16:00:00"
+        expireTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: 解除时间
+          example: "2024-06-22T16:00:00"
+
+    # 错误响应
+    ErrorResult:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 错误码
+          example: 401
+        message:
+          type: string
+          description: 错误描述
+          example: 未登录或Token已过期
+        data:
+          type: object
+          nullable: true
+          example: null
+
+# ===================== 接口定义 =====================
+paths:
+
+  # ==================== 认证模块 ====================
+  /api/auth/login:
+    post:
+      tags: [认证]
+      summary: 用户登录
+      description: |
+        使用用户名和密码登录，成功后返回 JWT Token。
+        Token 需存储在本地，后续请求通过 `Authorization: Bearer <token>` 携带。
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDTO'
+            examples:
+              普通用户登录:
+                value:
+                  username: "testuser"
+                  password: "123456"
+              管理员登录:
+                value:
+                  username: "admin"
+                  password: "admin123"
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/LoginVO'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  userId: 1001
+                  username: "testuser"
+                  nickname: "测试用户"
+                  avatarUrl: "http://localhost:9000/shill-guard/avatars/a.jpg"
+                  role: 0
+                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDEsInJvbGUiOjB9.xxx"
+                  expireIn: 86400
+        '400':
+          description: 参数错误或密码错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                密码错误:
+                  value:
+                    code: 1003
+                    message: 密码错误
+                    data: null
+                用户不存在:
+                  value:
+                    code: 1001
+                    message: 用户不存在
+                    data: null
+                账号被禁言:
+                  value:
+                    code: 1004
+                    message: 账号已被禁言
+                    data: null
+
+  /api/auth/register:
+    post:
+      tags: [认证]
+      summary: 用户注册
+      description: 注册新账号，用户名唯一，密码6-30位，注册后需重新登录获取Token。
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDTO'
+            example:
+              username: "newuser"
+              password: "password123"
+              nickname: "新用户"
+              phone: "13800138000"
+              email: "new@example.com"
+      responses:
+        '200':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '400':
+          description: 参数错误或用户名已存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                用户名已存在:
+                  value:
+                    code: 1002
+                    message: 用户名已存在
+                    data: null
+                参数校验失败:
+                  value:
+                    code: 422
+                    message: 用户名长度3-20位
+                    data: null
+
+  /api/auth/logout:
+    post:
+      tags: [认证]
+      summary: 退出登录
+      description: 使当前用户的 Token 失效（服务端删除 Redis 中的 Token）。
+      operationId: logout
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 退出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '401':
+          description: 未登录
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 401
+                message: 未登录或Token已过期
+                data: null
+
+  # ==================== 用户模块 ====================
+  /api/user/me:
+    get:
+      tags: [用户]
+      summary: 获取当前登录用户信息
+      description: 返回当前登录用户的完整信息（含手机号、邮箱等敏感字段）。
+      operationId: getCurrentUser
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/SysUser'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  userId: 1001
+                  username: "testuser"
+                  nickname: "测试用户"
+                  avatarUrl: "http://localhost:9000/shill-guard/avatars/a.jpg"
+                  role: 0
+                  status: 0
+                  createdTime: "2024-01-15T10:30:00"
+
+    put:
+      tags: [用户]
+      summary: 修改个人昵称或头像
+      description: |
+        修改当前用户的昵称或头像URL，两个参数均为可选，传哪个改哪个。
+        头像URL 需先通过 `/api/file/avatar` 接口上传获取。
+      operationId: updateCurrentUser
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: nickname
+          in: query
+          required: false
+          description: 新昵称
+          schema:
+            type: string
+            example: 新昵称
+        - name: avatarUrl
+          in: query
+          required: false
+          description: 新头像URL（由文件服务上传获取）
+          schema:
+            type: string
+            example: "http://localhost:9000/shill-guard/avatars/new.jpg"
+      responses:
+        '200':
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+
+  /api/user/{userId}:
+    get:
+      tags: [用户]
+      summary: 获取指定用户公开信息
+      description: 返回用户的公开信息（仅含userId、nickname、avatarUrl、role），敏感字段不返回。
+      operationId: getUserProfile
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: 用户ID
+          schema:
+            type: integer
+            format: int64
+            example: 1001
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          userId:
+                            type: integer
+                            format: int64
+                            example: 1001
+                          nickname:
+                            type: string
+                            example: 测试用户
+                          avatarUrl:
+                            type: string
+                            example: "http://localhost:9000/shill-guard/avatars/a.jpg"
+                          role:
+                            type: integer
+                            example: 0
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  userId: 1001
+                  nickname: "测试用户"
+                  avatarUrl: "http://localhost:9000/shill-guard/avatars/a.jpg"
+                  role: 0
+        '404':
+          description: 用户不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 1001
+                message: 用户不存在
+                data: null
+
+  /api/user/{userId}/mute:
+    put:
+      tags: [用户]
+      summary: 管理员直接禁言用户（改状态）
+      description: |
+        管理员将用户状态设为禁言（status=1）。
+        **需要 role >= 2 的管理员权限。**
+        注意：此接口仅修改用户状态，完整的禁言记录请使用 `/api/agent/mute` 接口。
+      operationId: muteUser
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: 要禁言的用户ID
+          schema:
+            type: integer
+            format: int64
+            example: 1005
+      responses:
+        '200':
+          description: 禁言成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '403':
+          description: 无权限
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 403
+                message: 无权限访问
+                data: null
+
+  # ==================== 帖子模块 ====================
+  /api/content/posts:
+    get:
+      tags: [帖子]
+      summary: 获取帖子列表（分页）
+      description: |
+        获取帖子列表，支持按话题标签筛选，按发布时间倒序排列。
+        无需登录即可访问。
+      operationId: getPostList
+      parameters:
+        - name: pageNum
+          in: query
+          required: false
+          description: 页码（从1开始）
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: 每页数量（最大50）
+          schema:
+            type: integer
+            default: 10
+            example: 20
+        - name: topicTag
+          in: query
+          required: false
+          description: 话题标签筛选（精确匹配）
+          schema:
+            type: string
+            example: 摄影
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/PageInfo'
+                          - type: object
+                            properties:
+                              records:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/ContentPost'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  records:
+                    - postId: 2001
+                      userId: 1001
+                      nickname: "摄影爱好者"
+                      title: "分享一个好用的摄影技巧"
+                      content: "今天分享一个超实用的构图技巧..."
+                      coverUrl: "http://localhost:9000/shill-guard/images/cover.jpg"
+                      topicTag: "摄影"
+                      viewCount: 1024
+                      likeCount: 88
+                      commentCount: 23
+                      createdTime: "2024-06-15T14:30:00"
+                  total: 128
+                  size: 10
+                  current: 1
+                  pages: 13
+
+    post:
+      tags: [帖子]
+      summary: 发布帖子
+      description: |
+        发布新帖子，需要登录。
+        若包含图片或视频，请先调用文件上传接口获取 URL，再填入 `coverUrl` 或 `mediaUrl`。
+      operationId: createPost
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCreateDTO'
+            examples:
+              纯文字帖子:
+                value:
+                  title: "今天的心情随笔"
+                  content: "生活总是充满惊喜..."
+                  postType: 1
+                  topicTag: "生活"
+              图文帖子:
+                value:
+                  title: "分享一个好用的摄影技巧"
+                  content: "今天分享一个超实用的构图技巧..."
+                  coverUrl: "http://localhost:9000/shill-guard/images/cover.jpg"
+                  postType: 2
+                  topicTag: "摄影"
+      responses:
+        '200':
+          description: 发布成功，返回帖子ID
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: integer
+                        format: int64
+                        description: 新帖子的 postId
+              example:
+                code: 200
+                message: 操作成功
+                data: 2001
+        '401':
+          description: 未登录
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+        '422':
+          description: 参数校验失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 422
+                message: 标题不能为空
+                data: null
+
+  /api/content/posts/{postId}:
+    get:
+      tags: [帖子]
+      summary: 获取帖子详情
+      description: 获取指定帖子的完整信息，同时浏览数 +1。无需登录。
+      operationId: getPostDetail
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: 帖子ID
+          schema:
+            type: integer
+            format: int64
+            example: 2001
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ContentPost'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  postId: 2001
+                  userId: 1001
+                  nickname: "摄影爱好者"
+                  title: "分享一个好用的摄影技巧"
+                  content: "今天分享一个超实用的构图技巧，三分法则是..."
+                  coverUrl: "http://localhost:9000/shill-guard/images/cover.jpg"
+                  topicTag: "摄影"
+                  viewCount: 1025
+                  likeCount: 88
+                  commentCount: 23
+                  isLiked: false
+                  createdTime: "2024-06-15T14:30:00"
+        '404':
+          description: 帖子不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 2001
+                message: 帖子不存在
+                data: null
+
+    delete:
+      tags: [帖子]
+      summary: 删除帖子
+      description: |
+        删除指定帖子。
+        - 帖子发布者可以删除自己的帖子。
+        - 管理员（role >= 2）可以删除任意帖子。
+      operationId: deletePost
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: 帖子ID
+          schema:
+            type: integer
+            format: int64
+            example: 2001
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '403':
+          description: 无权删除（非作者且非管理员）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 403
+                message: 无权限访问
+                data: null
+
+  /api/content/posts/{postId}/like:
+    post:
+      tags: [帖子]
+      summary: 点赞帖子
+      description: 对指定帖子点赞，每个用户每个帖子只能点赞一次。需要登录。
+      operationId: likePost
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: 帖子ID
+          schema:
+            type: integer
+            format: int64
+            example: 2001
+      responses:
+        '200':
+          description: 点赞成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '400':
+          description: 已经点赞过
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 2003
+                message: 已经点赞过了
+                data: null
+
+    delete:
+      tags: [帖子]
+      summary: 取消点赞帖子
+      description: 取消对指定帖子的点赞。需要登录。
+      operationId: unlikePost
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: 帖子ID
+          schema:
+            type: integer
+            format: int64
+            example: 2001
+      responses:
+        '200':
+          description: 取消点赞成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+
+  # ==================== 评论模块 ====================
+  /api/content/comments/post/{postId}:
+    get:
+      tags: [评论]
+      summary: 获取帖子的评论列表（分页）
+      description: 获取指定帖子下的一级评论列表，按时间排序。无需登录。
+      operationId: getCommentsByPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: 帖子ID
+          schema:
+            type: integer
+            format: int64
+            example: 2001
+        - name: pageNum
+          in: query
+          required: false
+          description: 页码
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: 每页数量
+          schema:
+            type: integer
+            default: 20
+            example: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/PageInfo'
+                          - type: object
+                            properties:
+                              records:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/ContentComment'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  records:
+                    - commentId: 3001
+                      userId: 1002
+                      nickname: "小明"
+                      content: "写得真好！"
+                      likeCount: 5
+                      createdTime: "2024-06-15T15:00:00"
+                  total: 23
+                  size: 20
+                  current: 1
+
+  /api/content/comments:
+    post:
+      tags: [评论]
+      summary: 发表评论
+      description: |
+        发表评论或回复。
+        - `parentCommentId` 为空时，发表一级评论。
+        - `parentCommentId` 有值时，回复指定评论（二级评论）。
+        需要登录。
+      operationId: addComment
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreateDTO'
+            examples:
+              一级评论:
+                value:
+                  postId: 2001
+                  content: "写得真好，学到了！"
+              回复评论:
+                value:
+                  postId: 2001
+                  content: "同意楼上！"
+                  parentCommentId: 3001
+                  replyToUserId: 1002
+      responses:
+        '200':
+          description: 评论成功，返回评论ID
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: integer
+                        format: int64
+                        description: 新评论的 commentId
+              example:
+                code: 200
+                message: 操作成功
+                data: 3001
+
+  /api/content/comments/{commentId}:
+    delete:
+      tags: [评论]
+      summary: 删除评论
+      description: |
+        删除指定评论。
+        - 评论作者可删除自己的评论。
+        - 管理员（role >= 2）可删除任意评论。
+      operationId: deleteComment
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          description: 评论ID
+          schema:
+            type: integer
+            format: int64
+            example: 3001
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+
+  /api/content/comments/{commentId}/like:
+    post:
+      tags: [评论]
+      summary: 点赞评论
+      description: 对指定评论点赞。需要登录。
+      operationId: likeComment
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          description: 评论ID
+          schema:
+            type: integer
+            format: int64
+            example: 3001
+      responses:
+        '200':
+          description: 点赞成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+
+  # ==================== 文件模块 ====================
+  /api/file/image:
+    post:
+      tags: [文件]
+      summary: 上传图片
+      description: |
+        上传图片到 MinIO，返回可访问的图片URL。
+        - 支持格式：JPEG、PNG、GIF、WebP
+        - 最大大小：10MB
+        - 上传成功后将URL填入帖子的 `coverUrl` 字段
+      operationId: uploadImage
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 图片文件（JPEG/PNG/GIF/WebP，最大10MB）
+      responses:
+        '200':
+          description: 上传成功，返回图片URL
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        description: 可直接访问的图片URL
+              example:
+                code: 200
+                message: 操作成功
+                data: "http://localhost:9000/shill-guard/images/3f4a9c2b-1234-5678-abcd.jpg"
+        '400':
+          description: 文件类型不支持或超出大小限制
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                类型不支持:
+                  value:
+                    code: 3002
+                    message: 不支持的文件类型
+                    data: null
+                文件过大:
+                  value:
+                    code: 3003
+                    message: 文件大小超出限制
+                    data: null
+
+  /api/file/video:
+    post:
+      tags: [文件]
+      summary: 上传视频
+      description: |
+        上传视频到 MinIO，返回可访问的视频URL。
+        - 支持格式：MP4、MOV、AVI
+        - 最大大小：200MB
+      operationId: uploadVideo
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 视频文件（MP4/MOV/AVI，最大200MB）
+      responses:
+        '200':
+          description: 上传成功，返回视频URL
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        description: 可直接访问的视频URL
+              example:
+                code: 200
+                message: 操作成功
+                data: "http://localhost:9000/shill-guard/videos/7e8b3c1d-abcd-efgh.mp4"
+
+  /api/file/avatar:
+    post:
+      tags: [文件]
+      summary: 上传头像
+      description: |
+        上传用户头像到 MinIO，返回头像URL。
+        - 支持格式：JPEG、PNG、GIF、WebP
+        - 最大大小：5MB（比普通图片限制更严格）
+        - 上传后调用 `PUT /api/user/me?avatarUrl=<url>` 更新头像
+      operationId: uploadAvatar
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 头像图片（JPEG/PNG/GIF/WebP，最大5MB）
+      responses:
+        '200':
+          description: 上传成功，返回头像URL
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        description: 头像URL
+              example:
+                code: 200
+                message: 操作成功
+                data: "http://localhost:9000/shill-guard/avatars/1a2b3c4d-efgh.jpg"
+
+  # ==================== Agent检测模块 ====================
+  /api/agent/detect/trigger:
+    post:
+      tags: [Agent检测]
+      summary: 手动触发水军检测
+      description: |
+        通知 Python Agent 服务立即对当前平台的评论数据进行水军群组分析。
+        - **需要管理员权限（role >= 2）**
+        - 任务异步执行，接口立即返回；检测结果将自动写入禁言记录
+        - 内部通过 RabbitMQ 发送检测指令，若消息队列不可用则降级为 HTTP 直调
+      operationId: triggerDetect
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 检测任务已提交
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        description: 提交结果描述
+              example:
+                code: 200
+                message: 操作成功
+                data: "检测任务已提交"
+        '403':
+          description: 无管理员权限
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              example:
+                code: 403
+                message: 无权限访问
+                data: null
+
+  /api/agent/mute/records:
+    get:
+      tags: [Agent检测]
+      summary: 查询禁言记录列表（分页）
+      description: |
+        分页查询所有禁言记录，按创建时间倒序排列。
+        **需要版主及以上权限（role >= 1）。**
+      operationId: getMuteRecords
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: pageNum
+          in: query
+          required: false
+          description: 页码
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: 每页数量
+          schema:
+            type: integer
+            default: 10
+            example: 10
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Result'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/PageInfo'
+                          - type: object
+                            properties:
+                              records:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/AgentMuteRecord'
+              example:
+                code: 200
+                message: 操作成功
+                data:
+                  records:
+                    - muteId: 4001
+                      mutedUserId: 1005
+                      muteReason: "系统检测到该用户属于水军群组，协同刷评论"
+                      muteDays: 7
+                      muteType: 0
+                      status: 1
+                      createdTime: "2024-06-15T16:00:00"
+                  total: 42
+                  size: 10
+                  current: 1
+
+  /api/agent/mute:
+    post:
+      tags: [Agent检测]
+      summary: 手动执行禁言
+      description: |
+        管理员手动对指定用户执行禁言操作，同时创建禁言记录。
+        **需要版主及以上权限（role >= 1）。**
+      operationId: manualMute
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: 要禁言的用户ID
+          schema:
+            type: integer
+            format: int64
+            example: 1005
+        - name: reason
+          in: query
+          required: true
+          description: 禁言原因
+          schema:
+            type: string
+            example: "多次发布虚假营销评论"
+        - name: days
+          in: query
+          required: false
+          description: 禁言天数（默认7天）
+          schema:
+            type: integer
+            default: 7
+            example: 30
+      responses:
+        '200':
+          description: 禁言成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '403':
+          description: 无权限
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+
+  /api/agent/mute/{muteId}:
+    delete:
+      tags: [Agent检测]
+      summary: 解除禁言
+      description: |
+        解除指定禁言记录，将禁言状态改为已解除，并恢复用户正常状态。
+        **需要版主及以上权限（role >= 1）。**
+      operationId: unmute
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: muteId
+          in: path
+          required: true
+          description: 禁言记录ID
+          schema:
+            type: integer
+            format: int64
+            example: 4001
+      responses:
+        '200':
+          description: 解除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultVoid'
+              example:
+                code: 200
+                message: 操作成功
+                data: null
+        '403':
+          description: 无权限
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'

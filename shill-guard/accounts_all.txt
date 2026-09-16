@@ -1,0 +1,39 @@
+======================================================================
+ShillGuard 平台 - sys_user 表全部用户清单
+数据库: shill_guard @ 192.168.150.101:3306
+用户总数: 13
+说明: password 字段为 BCrypt 加密后的哈希，无法逆向还原明文。
+======================================================================
+
+user_id username            role          status  nickname        created_time          last_login_time       
+--------------------------------------------------------------------------------------------------------------
+1       superadmin          超级管理员         正常      超管小刘            2026-05-01 09:00:00   NULL                  
+2       admin_zhang         管理员           正常      张管理             2026-05-01 10:00:00   NULL                  
+3       reviewer_li         审核员           正常      李审核             2026-05-02 09:00:00   NULL                  
+4       user_lihua          普通用户          正常      李小花             2026-05-10 14:23:00   NULL                  
+5       user_xiaoming       普通用户          正常      小明爱学习           2026-05-12 10:00:00   NULL                  
+6       user_wangfang       普通用户          正常      王芳不想卷           2026-05-15 08:30:00   NULL                  
+7       user_chenwei        普通用户          正常      陈威打工人           2026-05-18 20:11:00   NULL                  
+8       user_zhaoli         普通用户          正常      赵丽吃瓜人           2026-05-20 16:45:00   NULL                  
+9       user_sunyang        普通用户          正常      孙阳随便看看          2026-05-22 09:20:00   NULL                  
+10      user_luxin          普通用户          正常      路昕理财控           2026-05-25 11:30:00   NULL                  
+11      shill_jinshuai      普通用户          正常      金帅财富圈           2026-06-01 01:23:00   NULL                  
+12      shill_wangpeng      普通用户          正常      王鹏理财导师          2026-06-01 01:45:00   NULL                  
+13      shill_liuqian       普通用户          正常      刘倩投资小助手         2026-06-01 02:10:00   NULL                  
+
+======================================================================
+密码哈希明细（BCrypt，不可逆）:
+======================================================================
+user_id=1  username=superadmin  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=2  username=admin_zhang  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=3  username=reviewer_li  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=4  username=user_lihua  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=5  username=user_xiaoming  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=6  username=user_wangfang  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=7  username=user_chenwei  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=8  username=user_zhaoli  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=9  username=user_sunyang  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=10  username=user_luxin  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=11  username=shill_jinshuai  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=12  username=shill_wangpeng  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK
+user_id=13  username=shill_liuqian  password=$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBpwTIEmyiHOtK

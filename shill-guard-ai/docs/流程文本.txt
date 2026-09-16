@@ -1,0 +1,157 @@
+解析文档
+1、纯文本，md，pdf，docx，ppt，xlsx，csv
+2、匹配文档后缀，对应函数，并获得结果，进行校验
+
+***用户自己上传文件，需要先把文件读取为byte字节类型，然后执行统一的文件解析
+上面TODO：用户上传pdf也要直接读取吗？读取得到的类型是什么？会不会影响格式？
+
+
+3、公开接口处理所有文档parse_document：
+    需要文件路径、后缀、字符限制
+    通过后缀映射不同函数
+    可选：截断过长的内容
+
+不同类型思路：
+1、text，直接解码，data.decode()，md文件同样直接解码
+2、pdf格式：
+    三阶段解析：
+    1、针对文本格式，直接用pymupdf进行提取，（文本原生 + 复杂版式/多栏/表格/跨页）
+    然后会把内容封装到多个block，然后读取的时候，就会把多个block读取，是一个列表
+    2、根据读取的结果，决定pdf的格式类型，是文本为主的，还是扫描件，还是复杂性？
+    3、如果是扫描件，那就需要用ocr
+    详细的分类：
+        1、如果是文本为主的pdf，那么就用pymupdf的fitz 把字节数据打开成 PDF 文档对象
+        然后接收这些数据，这些数据是很多页，每页都有很多block
+        对每一页进行读取：
+            1、每页中有多个block，获取这些block，然后进行重新排序，这样因为不同的block里的内容不一样，有的是标题，有的是内容
+            但是防止乱序后读取文件内容导致乱序，因此用他们的坐标值来进行排序
+            2、一个页有多个block，每个block是一个元组，元组中前面和后面的内容根据他们的下标而不同，而不同下标代表固定的内容
+            比如b[0]和b[1]代表x,y坐标，b[4]代表内容，后续读取这个b[4]即可
+            3、然后读取所有b[4]，把所有block的，所有页的blocks中的内容全部按顺序保存起来
+        
+        2、根据扫描到的字符总数，判断是不是需要ocr
+            用pdf2image的convert_from_bytes把data转换为图
+            使用easyocr进行读取，用Reader的readtext对图进行读取，得到结果，注意，要使用easyocr，所有的图片都要转换为np.array格式，然后才能读取
+            得到的results中，每个result中都是有置信度和内容两部分，然后我们把置信度度高的内容按顺序存储起来
+            最终得到最终的扫描件的内容
+
+
+3、针对docx文档：
+    """
+    DOCX 解析：提取正文段落 + 所有表格。
+
+    docx.Document() 参数：
+      io.BytesIO(data)：将字节流包装成文件对象，避免落盘
+
+    Document 对象常用属性：
+      doc.paragraphs         → 所有段落列表（按文档顺序）
+      doc.tables             → 所有表格列表
+      doc.sections           → 节列表（含页眉/页脚/页边距设置）
+      doc.styles             → 样式字典（Heading 1/Normal/等）
+      doc.core_properties    → 元数据（作者/创建时间/标题）
+
+    Paragraph 对象：
+      para.text              → 段落纯文本（合并所有 run）
+      para.style.name        → 样式名，如 "Heading 1"/"Normal"
+      para.runs              → 格式片段列表（粗体/斜体会分段）
+      para.alignment         → 对齐方式
+
+    Table 对象：
+      table.rows             → 行列表
+      row.cells              → 单元格列表
+      cell.text              → 单元格纯文本
+已知局限：
+      doc.paragraphs 和 doc.tables 是两个独立列表，
+      无法保留段落与表格在文档中原始穿插顺序。
+      对 RAG 语义检索场景影响不大，如需精确顺序可用 doc.element 遍历 XML。
+    """
+具体流程：
+    docx.Document().paragraph.text
+    docx.Document().paragraph.tables.rows.cells.text
+    具体流程就是循环处理所有docx文档中所有文本框段落中的文字并保存，然后再遍历所有表格获取所有表格的内容并保存
+
+
+3、针对pptx文档
+"""
+    PPTX 解析：逐幻灯片提取文本框 + 表格。
+
+    Presentation 对象：
+      prs.slides             → 幻灯片列表
+      prs.slide_width/height → 幻灯片尺寸（EMU 单位）
+      prs.slide_layouts      → 版式列表
+      prs.slide_masters      → 母版列表
+
+    Slide 对象：
+      slide.shapes           → 所有形状列表
+      slide.slide_layout     → 当前版式
+      slide.notes_slide      → 备注页
+
+    Shape 对象：
+      shape.has_text_frame   → bool，是否包含文本
+      shape.has_table        → bool，是否是表格
+      shape.has_chart        → bool，是否是图表
+      shape.shape_type       → 枚举值（文本框/图片/形状/等）
+      shape.name             → 形状名称
+      shape.text_frame.paragraphs → 文本框中的段落列表
+
+    已知局限：
+      SmartArt 内部文字无法直接提取（需解析 XML）
+      图片内文字需 OCR（本函数不处理）
+    """
+调用流程：
+    ppt文本：Presentation.slides(遍历).shapes(遍历).text_frame.paragraphs.runs(遍历).text
+    ppt表格：shape.table.rows.cells.text
+然后保存起来即可
+
+
+4、针对XLSX文档：
+"""
+    XLSX 解析：遍历所有工作表，转为表格文本。
+
+    openpyxl.load_workbook() 参数：
+      read_only=True   → 只读模式，跳过样式/公式计算，内存占用更小
+      data_only=True   → 返回单元格的计算结果值，而非公式字符串
+                         （不加此参数，含 =SUM(A1:A3) 的单元格返回字符串 "=SUM(A1:A3)"）
+
+    Workbook 对象：
+      wb.sheetnames              → 所有工作表名称列表，如 ['Sheet1', '汇总']
+      wb[sheet_name]             → 按名称获取工作表
+      wb.active                  → 活动工作表
+
+    Worksheet 对象：
+      ws.iter_rows(values_only=True) → 逐行迭代，每行返回值元组（不含 Cell 对象）
+      ws.max_row                     → 有数据的最大行号
+      ws.max_column                  → 有数据的最大列号
+      ws.cell(row=1, column=1).value → 指定单元格的值
+      ws.dimensions                  → 数据范围字符串，如 "A1:H100"
+
+    全空行处理：
+      any(c.strip() for c in cells)：若该行所有单元格均为空则跳过，
+      避免输出大量无意义的 " |  |  | " 分隔行。
+    """
+遍历所有工作表，wb.sheetnames，然后对于每个sheetname，获取其对象wb[sheet_name]后，遍历每个行，iter_rows
+然后对于每个行，获取该行row下所有的单元格，row.cell，并把所有cell保存起来就是内容
+
+
+5、针对CSV文档：
+"""
+    CSV 解析：内置 csv 模块，自动检测编码。
+
+    csv 模块（Python 内置，无需安装）：
+      csv.reader(f)         → 迭代器，每次返回一行的列表  ← 本函数使用
+      csv.writer(f)         → 写入器，writerow([...]) 写一行
+      csv.DictReader(f)     → 以首行为键，每行返回字典（适合有表头的 CSV）
+      csv.DictWriter(f, fieldnames=[...]) → 按字典写入
+
+    io.StringIO(text)：
+      将字符串包装成文件对象，供 csv.reader 迭代，
+      避免将数据写入临时文件。
+
+    全空行处理：
+      any(cell.strip() for cell in row)：跳过行内全部为空的行。
+    """
+
+遍历reader，保存里面的row，即每一行的内容即可。
+对比这个xlsx，这个csv每行里的内容已经被csv.reader(io.StringIO(text))这个处理为了str，直接进行读取和保存即可
+但是这个xlsx，每个cell里的数据数据类型不一样，所以要逐个的进行遍历row，并进行str数据转换，然后再保存
+

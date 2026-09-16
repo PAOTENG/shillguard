@@ -1,0 +1,75 @@
+server:
+  port: 18080
+
+spring:
+  application:
+    name: shill-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: shill-auth
+          uri: lb://shill-auth
+          predicates:
+            - Path=/api/auth/**
+
+        - id: shill-user
+          uri: lb://shill-user
+          predicates:
+            - Path=/api/user/**
+
+        - id: shill-chat-rest
+          uri: lb://shill-user
+          predicates:
+            - Path=/api/chat/**
+
+        - id: shill-chat-ws
+          uri: lb:ws://shill-user
+          predicates:
+            - Path=/ws/**
+
+        - id: shill-content
+          uri: lb://shill-content
+          predicates:
+            - Path=/api/content/**
+
+        - id: shill-agent
+          uri: lb://shill-agent
+          predicates:
+            - Path=/api/agent/**
+
+        - id: shill-admin
+          uri: lb://shill-admin
+          predicates:
+            - Path=/api/admin/**
+
+        - id: shill-notify
+          uri: lb://shill-notify
+          predicates:
+            - Path=/api/notify/**
+
+        - id: shill-file
+          uri: lb://shill-file
+          predicates:
+            - Path=/api/file/**
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+
+logging:
+  level:
+    com.shillguard: debug

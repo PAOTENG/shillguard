@@ -1,0 +1,589 @@
+请你分析并解释：thinking 模型两种结构化输出都不支持这个问题是在哪个步骤中出现的？为什么？就是原因的前因后果以及背景都给我讲明白
+
+好，从头到尾讲清楚。
+
+一、背景：什么是 thinking 模型
+DeepSeek-R1、DeepSeek-v4-flash（带 thinking 的版本）、o1/o3 等模型，与普通 Chat 模型的本质区别是：
+
+普通模型（GPT-4o、DeepSeek-V2.5 等）：
+
+输入 prompt → 直接输出 answer
+Thinking 模型（DeepSeek-R1、v4-flash thinking 版）：
+
+输入 prompt → 先输出 <think>...推理过程...</think> → 再输出 answer
+模型在内部会先生成一段"思考链"（CoT），然后再给出最终回答。这是它更强的原因，也是导致后续问题的根本原因。
+
+二、第一种结构化输出失败：function_calling
+它是什么
+with_structured_output(method="function_calling") 在底层会把你的 Pydantic schema 转换成一个 OpenAI function definition，然后给 API 发送：
+
+{
+  "tools": [{"type": "function", "function": {"name": "WorkerContextResult", "parameters": {...}}}],
+  "tool_choice": {"type": "function", "function": {"name": "WorkerContextResult"}}
+}
+tool_choice: required 的含义是：强制模型必须调用这个函数，不允许它输出普通文本。
+
+为什么 thinking 模型不支持
+Thinking 模型的架构决定了它的输出分两个阶段：
+
+第一阶段：生成 <think> 推理链（纯文本流）
+第二阶段：生成最终 answer
+OpenAI 协议里，tool_calls 是 assistant message 的一种特殊类型，与文本输出互斥。但 thinking 模型必须先输出一段思考文本，然后才能调用 function。这两个约束在协议层面冲突了——模型既要先输出文本（思考链），又要被 tool_choice: required 强制"只能调 function 不能输出文本"。
+
+DeepSeek 官方在 API 文档里明确写了：
+
+thinking 模式下不支持 tool_choice 参数
+
+API 直接返回 400：
+
+Thinking mode does not support this tool_choice
+三、第二种结构化输出失败：json_mode
+它是什么
+with_structured_output(method="json_mode") 换了一种方式，给 API 发送：
+
+{
+  "response_format": {"type": "json_object"}
+}
+它不再强制 function call，而是告诉模型"你的输出必须是合法 JSON 字符串"。
+
+为什么 thinking 模型也不支持
+根本原因相同：thinking 模型的第一阶段输出（<think> 推理链）是自由格式的纯文本，不是合法 JSON。
+
+response_format: json_object 的语义是"整个 assistant response 必须是 JSON"，但 thinking 模型的完整响应是：
+
+<think>让我想想，用户问的是名字，背景里有"张三"，所以...</think>
+{"has_relevant_context": true, "background_fact": "用户名字是张三"}
+前面的 <think>...</think> 破坏了"整个输出是 JSON"的约束。所以 API 拒绝了这个请求，同样返回 400。
+
+（注：部分 API 实现里，<think> 内容会被剥离后单独放在 reasoning_content 字段，不混入 content。但 json_mode 的校验发生在 API 层，思考链的生成本身就与 json_object 格式不兼容，所以直接拒绝。）
+
+四、为什么之前没发现，今天才暴露
+expander_model: str = "deepseek-v4-flash"
+deepseek-v4-flash 这个模型名对应的是 DeepSeek 最新发布的 Flash 版本，默认开启 thinking 模式。在你 .env 里配置的 API 端点（百炼 / DeepSeek 官方）将这个模型名路由到了 thinking 版本。
+
+而之前测试 RAG、审核等功能时，那些节点用的是不同的调用路径，没有触发 with_structured_output，所以没有报错。只有 context_processor_node 用了结构化输出，才暴露了这个问题。
+
+五、完整的失败链路
+用户问"我叫什么名字"
+    │
+    ▼
+memory_node
+    ├── summary = "• 用户姓名：张三"          ✅ 正确
+    └── long_term_memories = "User's name is Zhang San" ✅ 正确
+    │
+    ▼
+context_processor_node
+    │
+    ├── 尝试 with_structured_output(method="function_calling")
+    │       → API 400: tool_choice not supported
+    │
+    ├── (修复后) 尝试 with_structured_output(method="json_mode")
+    │       → API 400: response_format not supported
+    │
+    └── 两次都 exception → 降级 → processed_context = ""
+    │
+    ▼
+chat_node
+    │
+    ├── processed_context = ""  → system prompt 里无任何背景
+    └── 主 LLM 只看到最近6条消息原文（名字不在窗口里）
+    │
+    ▼
+AI 回答："抱歉，我不知道你的名字"
+六、修复方案的原理
+新方案绕过了协议层面的冲突——不要求 API 约束输出格式，而是把 JSON schema 写进 System Prompt，让模型"自愿"输出 JSON，然后我们自己从响应文本里提取：
+
+_WORKER_SYSTEM = (
+    "...规则...\n"
+    "必须只返回如下格式的 JSON，不要任何额外说明：\n"
+    '{"has_relevant_context": true, "background_fact": "单句事实"}'
+)
+resp = await llm.ainvoke([SystemMessage(...), HumanMessage(...)])
+content = resp.content   # 可能包含 <think>...</think> + JSON
+# 正则从文本中抠出 JSON 块，忽略思考链前缀
+match = _JSON_RE.search(content)
+data = json.loads(match.group())
+result_obj = WorkerContextResult(**data)
+thinking 模型输出的完整内容是：
+
+<think>背景里有张三，当前问题是名字，所以...</think>
+{"has_relevant_context": true, "background_fact": "用户名字是张三"}
+正则 \{[^{}]*"has_relevant_context"[^{}]*\} 跳过思考链，精确匹配到后面的 JSON 块，解析成功。
+
+这就是为什么这个方案对所有模型都兼容——它完全不依赖 API 协议层的结构化输出特性，只依赖模型理解 prompt 的能力。
+
+二、第一种结构化输出失败：function_calling
+
+它是什么
+
+with_structured_output(method="function_calling") 在底层会把你的 Pydantic schema 转换成一个 OpenAI function definition，然后给 API 发送：
+
+
+
+
+
+{
+
+  "tools": [{"type": "function", "function": {"name": "WorkerContextResult", "parameters": {...}}}],
+
+  "tool_choice": {"type": "function", "function": {"name": "WorkerContextResult"}}
+
+}
+
+tool_choice: required 的含义是：强制模型必须调用这个函数，不允许它输出普通文本。
+
+
+
+为什么 thinking 模型不支持
+
+Thinking 模型的架构决定了它的输出分两个阶段：
+
+
+
+第一阶段：生成 <think> 推理链（纯文本流）
+
+第二阶段：生成最终 answer
+
+OpenAI 协议里，tool_calls 是 assistant message 的一种特殊类型，与文本输出互斥。但 thinking 模型必须先输出一段思考文本，然后才能调用 function。这两个约束在协议层面冲突了——模型既要先输出文本（思考链），又要被 tool_choice: required 强制"只能调 function 不能输出文本"。
+
+
+
+DeepSeek 官方在 API 文档里明确写了：
+
+
+
+thinking 模式下不支持 tool_choice 参数
+
+
+
+API 直接返回 400：
+
+
+
+Thinking mode does not support this tool_choice
+
+这个问题，我还是不懂，请你仔细分析并想办法给我讲明白
+
+用一个具体的比喻来解释。
+
+先理解"普通模型"是怎么调 function 的
+普通模型（非 thinking）收到请求后，它的输出只有两种选择：
+
+选择 A：输出普通文本
+
+assistant: {
+  "content": "你好，我是 AI 助手，有什么可以帮你的？",
+  "tool_calls": null
+}
+选择 B：调用函数（tool_calls）
+
+assistant: {
+  "content": null,
+  "tool_calls": [{
+    "name": "WorkerContextResult",
+    "arguments": "{\"has_relevant_context\": true, \"background_fact\": \"用户名字是张三\"}"
+  }]
+}
+注意：content 和 tool_calls 二选一，这是 OpenAI 协议的硬性规定。当你传 tool_choice: required 时，就是强制走选择 B，content 必须为 null。
+
+普通模型完全没问题——它想好答案后，直接输出 JSON 参数就行了。
+
+再理解"thinking 模型"的输出结构
+Thinking 模型（DeepSeek-R1、o1 等）有个特殊之处：它必须先"想"，再"答"。
+
+它的完整输出在协议上是这样的：
+
+assistant: {
+  "reasoning_content": "让我想想...用户问的是名字，背景里有张三，所以答案是...",
+  "content": "用户名字是张三。",
+  "tool_calls": null
+}
+reasoning_content（思考链）是一个独立的文本字段，而且它必须在 content 之前生成，因为思考链就是为了推导出最终答案的。
+
+冲突在哪里
+现在问题来了。当你要求 tool_choice: required 时，协议要求：
+
+content = null        ← 必须为空
+tool_calls = [...]    ← 必须有内容
+但 thinking 模型的输出是：
+
+reasoning_content = "..." ← 这是文本，必须有
+content = null            ← 可以为空，没问题
+tool_calls = [...]        ← 也可以有，理论上没问题
+表面上看没有冲突？
+
+问题出在 reasoning_content 上。
+
+DeepSeek 的 API 实现里，思考链（reasoning_content）和最终答案（content 或 tool_calls）是同一个 generation pass 里生成的。模型在生成时无法切换"输出模式"。
+
+也就是说，thinking 模型的生成顺序是这样的：
+
+token 1~N:   "让我想想...用户问名字..."   → 这是 reasoning_content（文本流）
+token N+1~M: "用户名字是张三"             → 这是最终答案
+而 tool_calls 要求的输出格式是结构化的 JSON 参数，不是自然语言文本：
+
+token N+1~M: {"has_relevant_context": true, "background_fact": "用户名字是张三"}
+DeepSeek 的 thinking 模型在训练时，思考链之后只学习了输出自然语言答案，没有学习"思考完再输出 function call JSON"这个模式。所以当你强制要求它走 tool_calls 路径时，模型本身就不会做，API 直接拦截返回 400。
+
+用一个现实比喻
+想象你雇了两种员工来填一张表格：
+
+普通员工（普通模型）：
+
+你说"填这张表"，他直接拿起笔填好交给你。没有废话，直接给结构化输出。
+
+思考型员工（thinking 模型）：
+
+你说"填这张表"，他先在草稿纸上打了一大段草稿（reasoning_content），把逻辑理顺之后，最后才在表格上填写答案（content）。
+
+现在你要求"只能填表格，不许先写草稿"（tool_choice: required = 强制 tool_calls，content 必须 null）：
+
+对普通员工：没问题，他本来就直接填表。
+对思考型员工：他做不到。他的工作方式就是先打草稿再填表，你不让他打草稿，他就不知道怎么填了。
+DeepSeek 的 API 也知道这一点，所以直接告诉你：
+
+400: Thinking mode does not support this tool_choice
+翻译过来就是："这个员工只会先想后答，你不能强制他跳过想的步骤直接输出结构化表单。"
+
+为什么新方案可行
+新方案不再"强制"任何东西，而是换了一种说话方式：
+
+system: "你必须只返回这种格式的 JSON：{'has_relevant_context': ..., 'background_fact': '...'}"
+human:  "用户问了名字，背景里有张三，请提炼"
+这时 thinking 员工的工作流程变成：
+
+草稿（reasoning_content）：
+  "让我分析一下...用户问名字...背景有张三...所以应该返回 JSON，
+   has_relevant_context 为 true，background_fact 填'用户名字是张三'..."
+最终答案（content）：
+  {"has_relevant_context": true, "background_fact": "用户名字是张三"}
+他仍然先思考，然后输出 JSON 文本——不是通过 tool_calls 机制，而是把 JSON 当普通文本输出。我们再用正则从 content 里把 JSON 抠出来解析。
+
+核心区别：
+
+方式	强制协议层	要求模型做什么	结果
+tool_choice: required
+是
+跳过文本直接输出 function call
+模型做不到，400
+response_format: json_object
+是
+整个输出必须是 JSON
+思考链破坏格式，400
+新方案（prompt 约束）
+否
+自己决定先思考再输出 JSON 文本
+完全没问题
+本质上：协议层的强制约束 vs. prompt 层的软性引导。thinking 模型不接受协议层约束，但完全理解并遵守 prompt 指令。
+
+[TIMER] chat_node=4293ms (window=6/19 msgs, ctx=无)
+
+ERROR:    Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 421, in run_asgi
+
+    result = await app(  # type: ignore[func-returns-value]
+
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 62, in __call__
+
+    return await self.app(scope, receive, send)
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\applications.py", line 1163, in __call__
+
+    await super().__call__(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\applications.py", line 90, in __call__
+
+    await self.middleware_stack(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+
+    raise exc
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+
+    await self.app(scope, receive, _send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+
+    await self.simple_response(scope, receive, send, request_headers=headers)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+
+    await self.app(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+
+    raise exc
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+
+    await app(scope, receive, sender)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+
+    await self.app(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\routing.py", line 660, in __call__
+
+    await self.middleware_stack(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 2531, in app
+
+    await route.handle(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 1700, in handle
+
+    await self.original_router.handle(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 2586, in handle
+
+    await included_router._handle_selected(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 1720, in _handle_selected
+
+    await original_route.handle(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 1239, in handle
+
+    await app(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 150, in app
+
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+
+    raise exc
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+
+    await app(scope, receive, sender)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\fastapi\routing.py", line 137, in app
+
+    await response(scope, receive, send)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\responses.py", line 273, in __call__
+
+    async with create_collapsing_task_group() as task_group:
+
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\contextlib.py", line 231, in __aexit__
+
+    await self.gen.athrow(value)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\_utils.py", line 93, in create_collapsing_task_group
+
+    raise exc from exc.__cause__ or context
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\anyio\_core\_tasks.py", line 278, in _run_coro
+
+    retval = await self._coro
+
+             ^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\responses.py", line 276, in wrap
+
+    await func()
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\starlette\responses.py", line 250, in stream_response
+
+    async for chunk in self.body_iterator:
+
+  File "D:\Projects\shill-guard-ai\app\agents\chat\router.py", line 112, in event_stream
+
+    async for event in graph.astream_events(inputs, config=config, version="v2"):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\runnables\base.py", line 1658, in _astream_events_v1_v2
+
+    async for event in event_stream:
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\tracers\event_stream.py", line 1105, in _astream_events_implementation_v2
+
+    await task
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\tracers\event_stream.py", line 1060, in consume_astream
+
+    async for _ in event_streamer.tap_output_aiter(run_id, stream):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\tracers\event_stream.py", line 224, in tap_output_aiter
+
+    async for chunk in output:
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\pregel\main.py", line 3455, in astream
+
+    async for _ in runner.atick(
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\pregel\_runner.py", line 396, in atick
+
+    await arun_with_retry(
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\pregel\_retry.py", line 741, in arun_with_retry
+
+    async for _ in task.proc.astream(task.input, config):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\_internal\_runnable.py", line 867, in astream
+
+    output = await asyncio.create_task(
+
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\_internal\_runnable.py", line 932, in _consume_aiter
+
+    async for chunk in it:
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\tracers\event_stream.py", line 201, in tap_output_aiter
+
+    first = await anext(output, sentinel)
+
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\runnables\base.py", line 1818, in atransform
+
+    async for ichunk in input:
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\runnables\base.py", line 1818, in atransform
+
+    async for ichunk in input:
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\runnables\base.py", line 1222, in astream
+
+    yield await self.ainvoke(input, config, **kwargs)
+
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langgraph\_internal\_runnable.py", line 501, in ainvoke
+
+    ret = await self.afunc(*args, **kwargs)
+
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Projects\shill-guard-ai\app\agents\chat\graph.py", line 254, in chat_node
+
+    result = await llm_with_tools.ainvoke(msgs)
+
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\runnables\base.py", line 6017, in ainvoke
+
+    return await self.bound.ainvoke(
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\language_models\chat_models.py", line 499, in ainvoke
+
+    llm_result = await self.agenerate_prompt(
+
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1860, in agenerate_prompt
+
+    return await self.agenerate(
+
+           ^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1818, in agenerate
+
+    raise exceptions[0]
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2108, in _agenerate_with_cache
+
+    async for chunk in self._astream(messages, stop=stop, **kwargs):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_openai\chat_models\base.py", line 3404, in _astream
+
+    async for chunk in super()._astream(*args, **kwargs):
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_openai\chat_models\base.py", line 1900, in _astream
+
+    _handle_openai_bad_request(e)
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\langchain_openai\chat_models\base.py", line 1871, in _astream
+
+    response = await self.async_client.create(**payload)
+
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\openai\resources\chat\completions\completions.py", line 2814, in create
+
+    return await self._post(
+
+           ^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\openai\_base_client.py", line 1931, in post
+
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "D:\Environment\Anaconda\envs\agent\Lib\site-packages\openai\_base_client.py", line 1716, in request
+
+    raise self._make_status_error_from_response(err.response) from None
+
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Messages with role 'tool' must be a response to a preceding message with 'tool_calls'", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+
+During task with name 'chat' and id '0bec4fae-c292-f75a-0652-d7a2d3ba940e'
+
+[mem0] 记忆更新完成(对话对): user_id=chat_1783865564479
+
+报错了，请你分析为什么？
+
+无错误。来解释为什么之前的修复不够：
+
+根因分析
+之前的修复为什么不够
+之前只做了"从第一个 HumanMessage 开始"：
+
+first_human = next(...)
+window = window[first_human:]   # 只截掉了开头
+这只解决了开头的孤儿，没有解决内部的孤儿。
+
+这次错误的具体场景
+window=6/19 msgs → 19条消息，触发了摘要压缩（19-1=18 > 8）。
+
+to_summarize = history[:12]，切割点落在第 12 条。如果第 12 条恰好是 AIMessage(tool_calls)（联网搜索），而第 13 条是对应的 ToolMessage：
+
+to_summarize = [..., AIMessage(tool_calls)]   ← 被 RemoveMessage 删掉
+keep         = [ToolMessage, AIMessage, ...]  ← ToolMessage 变成孤儿，留在 state 里
+state["messages"] 变成：
+
+[ToolMessage(孤儿), AIMessage, HumanMessage, AIMessage, HumanMessage(current), ...]
+窗口取 [-6:] = [ToolMessage, AIMessage, HumanMessage, AIMessage, HumanMessage, HumanMessage(current)]
+
+first_human 找到 index=2，截后 = [HumanMessage, AIMessage, HumanMessage, HumanMessage(current)] → 没问题，孤儿被跳过了。
+
+但是，另一种场景：
+
+to_summarize 末尾 = AIMessage(tool_calls)  ← 删掉
+keep 开头          = ToolMessage            ← 孤儿
+keep 中间          = HumanMessage
+keep 后面          = AIMessage(tc), ToolMessage   ← 这是正常的工具调用对
+窗口 = [ToolMessage(孤儿), HumanMessage, AIMessage(tc), ToolMessage, HumanMessage(current)]
+
+first_human 找到 index=1 → 截后 = [HumanMessage, AIMessage(tc), ToolMessage, HumanMessage(current)] → 这是合法的！不应该出错才对。
+
+实际上问题在 to_summarize 切割点：旧代码用纯下标 history[:-6] 切割，没有保证切割点是 HumanMessage 边界。这次修复同时修了两处：
+
+修复点	修复内容
+memory_node
+切割点左移对齐到 HumanMessage，不拆散工具调用对
+chat_node (_sanitize_window)
+全量扫描窗口，清除所有孤立 ToolMessage 和末尾悬空 AIMessage(tc)
+重启服务生效：
+
+taskkill /F /IM python.exe
+D:\Environment\Anaconda\envs\agent\python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+我发现现在的chatAgent特别慢，不管是ttft，还是思考的过程都特别慢，请你制作测试用例来测试，并写测试脚本，看看到底是哪一步最耗费时间？
+

@@ -1,0 +1,47 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: shill-agent
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 5000
+            read-timeout: 30000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shill_guard?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: shillguard123
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: shillguard123
+      database: 1
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: shillguard123
+    virtual-host: /
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+# Python Agent服务地址
+agent:
+  python-service-url: http://localhost:8000
+  # AI审核自动禁言默认天数（与 Python 端 moderation_mute_days_default 对齐）
+  mute-days-default: 30
+
+logging:
+  level:
+    com.shillguard: debug

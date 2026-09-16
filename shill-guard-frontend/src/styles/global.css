@@ -1,0 +1,218 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ===== 主题变量：浅色（默认） ===== */
+:root {
+  --bg-page: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover: #F5F5F5;
+  --bg-soft: #f5f5f5;
+  --bg-soft-2: #fff5f6;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-tertiary: #767676;
+  --text-muted: #999999;
+  --border-color: #F0F0F0;
+  --border-strong: #EBEBEB;
+  --brand: #FF2442;
+  --brand-soft: rgba(255, 36, 66, 0.1);
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== 主题变量：深色 ===== */
+html.dark {
+  --bg-page: #121212;
+  --bg-card: #1d1d1f;
+  --bg-elevated: #242427;
+  --bg-hover: #2a2a2e;
+  --bg-soft: #2a2a2e;
+  --bg-soft-2: #2a1a1d;
+  --text-primary: #ECECEC;
+  --text-secondary: #C8C8C8;
+  --text-tertiary: #A0A0A0;
+  --text-muted: #8A8A8A;
+  --border-color: #2E2E32;
+  --border-strong: #3A3A3F;
+  --brand: #FF2442;
+  --brand-soft: rgba(255, 36, 66, 0.18);
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
+  /* 让 Element Plus 深色变量与本主题对齐 */
+  --el-bg-color: #1d1d1f;
+  --el-bg-color-page: #121212;
+  --el-bg-color-overlay: #242427;
+  --el-text-color-primary: #ECECEC;
+  --el-text-color-regular: #C8C8C8;
+  --el-border-color: #2E2E32;
+  --el-border-color-light: #2E2E32;
+  --el-fill-color: #2a2a2e;
+  --el-fill-color-light: #242427;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Element Plus 主题色覆盖 */
+:root {
+  --el-color-primary: #FF2442;
+  --el-color-primary-light-3: #ff7088;
+  --el-color-primary-light-5: #ff92a1;
+  --el-color-primary-light-7: #ffb3bc;
+  --el-color-primary-light-8: #ffc4cc;
+  --el-color-primary-light-9: #fff0f2;
+  --el-color-primary-dark-2: #e01f3a;
+  --el-border-radius-base: 8px;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3A3A3F;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===== 深色模式：对各页面已存在的类名做全局覆盖 =====
+   说明：html.dark .xxx 的选择器特异性高于各 .vue 中 scoped 的 .xxx[data-v-xxx]，
+   因此无需修改每个视图即可在深色下生效。 */
+html.dark .home-page,
+html.dark .profile-page,
+html.dark .user-page,
+html.dark .publish-page,
+html.dark .search-page {
+  background: var(--bg-page) !important;
+  color: var(--text-primary) !important;
+}
+
+html.dark .topic-bar-wrap,
+html.dark .topic-bar {
+  background: var(--bg-card) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+html.dark .topic-chip {
+  background: var(--bg-card) !important;
+  border-color: var(--border-strong) !important;
+  color: var(--text-secondary) !important;
+}
+html.dark .topic-chip.active {
+  background: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: #fff !important;
+}
+html.dark .user-banner {
+  background: var(--bg-soft-2) !important;
+  border-bottom-color: #3a1a1d !important;
+}
+
+html.dark .post-card {
+  background: var(--bg-card) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+html.dark .post-card:hover {
+  box-shadow: var(--shadow-card-hover) !important;
+}
+html.dark .card-cover {
+  background: var(--bg-hover) !important;
+}
+html.dark .card-no-cover {
+  background: linear-gradient(135deg, var(--bg-soft-2), var(--bg-card)) !important;
+}
+html.dark .card-title {
+  color: var(--text-primary) !important;
+}
+html.dark .card-text,
+html.dark .author-name,
+html.dark .card-likes {
+  color: var(--text-tertiary) !important;
+}
+html.dark .card-likes.liked {
+  color: var(--brand) !important;
+}
+
+html.dark .profile-card,
+html.dark .user-card,
+html.dark .table-card,
+html.dark .stat-card {
+  background: var(--bg-card) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+html.dark .empty-state {
+  color: var(--text-tertiary) !important;
+}
+
+/* ===== 聊天消息弹窗（IM 风格） ===== */
+.chat-notify {
+  width: 320px !important;
+  padding: 0 !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid var(--border-strong) !important;
+  background: var(--bg-card) !important;
+  cursor: pointer;
+}
+.chat-notify .el-notification__content { margin: 0 !important; }
+.chat-notify .el-notification__title { display: none; }
+.chat-notify-card { display: flex; align-items: center; gap: 12px; padding: 12px 14px; }
+.cn-avatar-wrap { position: relative; flex-shrink: 0; }
+.cn-avatar {
+  width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #FF2442, #FF6A82);
+  color: #fff; font-size: 18px; font-weight: 700;
+  border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.cn-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.cn-dot {
+  position: absolute; right: 0; bottom: 0;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #FF2442; border: 2px solid var(--bg-card);
+}
+.cn-body { flex: 1; min-width: 0; }
+.cn-top { display: flex; align-items: baseline; gap: 6px; }
+.cn-name {
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cn-title { font-size: 12px; color: var(--text-tertiary); }
+.cn-preview {
+  font-size: 13px; color: var(--text-secondary); margin-top: 4px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html.dark .cn-avatar { border-color: var(--bg-card); }

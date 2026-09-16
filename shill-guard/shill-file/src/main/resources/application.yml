@@ -1,0 +1,30 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: shill-file
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+minio:
+  endpoint: http://127.0.0.1:9000
+  access-key: minioadmin
+  secret-key: shillguard123
+  bucket-name: shillguard
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+knife4j:
+  enable: true
+logging:
+  level:
+    com.shillguard: debug

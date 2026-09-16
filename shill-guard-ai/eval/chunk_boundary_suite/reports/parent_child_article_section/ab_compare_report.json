@@ -1,0 +1,1884 @@
+{
+  "generated_at": "2026-07-30 17:16:58",
+  "total_cases": 39,
+  "elapsed_ms": 16303,
+  "offline": {
+    "fixed": {
+      "summary": {
+        "strategy": "fixed_sliding_window_500_50",
+        "total_cases": 39,
+        "intact_rate": 0.0,
+        "context_cover_ok_rate": 0.0,
+        "half_article_failure_rate": 1.0
+      },
+      "results": [
+        {
+          "id": "CB-001",
+          "query": "跟帖评论 弹幕 点赞 网络暴力信息治理规定",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十七条　网络信息服务提供者应当加强网络视…"
+        },
+        {
+          "id": "CB-002",
+          "query": "评论区发弹幕骂人、跟帖引战，平台要怎么管，依据哪条",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十七条　网络信息服务提供者应当加强网络视…"
+        },
+        {
+          "id": "CB-003",
+          "query": "跟帖评论里的网络暴力，是按第十七条视听节目管还是按评论管理条款",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十七条　网络信息服务提供者应当加强网络视…"
+        },
+        {
+          "id": "CB-004",
+          "query": "信用记录 信用等级 账号信用 网络暴力信息治理规定",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·账号信用）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-14\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十三条　网络信息服务提供者应当建立健全网…"
+        },
+        {
+          "id": "CB-005",
+          "query": "网暴账号要不要记入信用、拉黑名单，法律怎么规定",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·账号信用）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-14\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十三条　网络信息服务提供者应当建立健全网…"
+        },
+        {
+          "id": "CB-006",
+          "query": "网暴用户是限制功能就行，还是要列入黑名单禁止注册",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络暴力信息治理规定（切分对抗·账号信用）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-14\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十三条　网络信息服务提供者应当建立健全网…"
+        },
+        {
+          "id": "CB-007",
+          "query": "公然侮辱 诽谤他人 散布他人隐私 治安管理处罚法",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 治安管理处罚法（切分对抗·侮辱诽谤）\n\n> 对抗评测专用。law=治安管理处罚法 article=PS-42\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第四十条　有下列行为之一的，处警告或者二百元以下罚款。…"
+        },
+        {
+          "id": "CB-008",
+          "query": "网上公开骂人诽谤、散布隐私，治安管理怎么处罚",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 治安管理处罚法（切分对抗·侮辱诽谤）\n\n> 对抗评测专用。law=治安管理处罚法 article=PS-42\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第四十条　有下列行为之一的，处警告或者二百元以下罚款。…"
+        },
+        {
+          "id": "CB-009",
+          "query": "公然侮辱诽谤只罚五日以下吗，有没有情节较重的档",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 治安管理处罚法（切分对抗·侮辱诽谤）\n\n> 对抗评测专用。law=治安管理处罚法 article=PS-42\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第四十条　有下列行为之一的，处警告或者二百元以下罚款。…"
+        },
+        {
+          "id": "CB-010",
+          "query": "侮辱罪 诽谤罪 剥夺政治权利 刑法",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 刑法（切分对抗·侮辱诽谤罪）\n\n> 对抗评测专用。law=刑法 article=CL-246\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。…"
+        },
+        {
+          "id": "CB-011",
+          "query": "网络侮辱诽谤什么情况才构成犯罪、要不要自己去告",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 刑法（切分对抗·侮辱诽谤罪）\n\n> 对抗评测专用。law=刑法 article=CL-246\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。…"
+        },
+        {
+          "id": "CB-012",
+          "query": "网上骂人是直接抠刑法侮辱罪，还是先看治安处罚",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 刑法（切分对抗·侮辱诽谤罪）\n\n> 对抗评测专用。law=刑法 article=CL-246\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。…"
+        },
+        {
+          "id": "CB-013",
+          "query": "非法收集 非法买卖 公开他人 个人信息保护法",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 个人信息保护法（切分对抗·非法公开）\n\n> 对抗评测专用。law=个人信息保护法 article=PI-10\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第九条　个人信息处理者应当对其个人信息处理活动负责，并…"
+        },
+        {
+          "id": "CB-014",
+          "query": "被人肉搜索曝光身份证电话，个保法能不能管",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 个人信息保护法（切分对抗·非法公开）\n\n> 对抗评测专用。law=个人信息保护法 article=PI-10\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第九条　个人信息处理者应当对其个人信息处理活动负责，并…"
+        },
+        {
+          "id": "CB-015",
+          "query": "曝光个人信息是删帖就行，还是个保法禁止非法公开",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 个人信息保护法（切分对抗·非法公开）\n\n> 对抗评测专用。law=个人信息保护法 article=PI-10\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第九条　个人信息处理者应当对其个人信息处理活动负责，并…"
+        },
+        {
+          "id": "CB-016",
+          "query": "遵守公共秩序 尊重社会公德 使用网络应当 网络安全法",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络安全法（切分对抗·造谣传谣）\n\n> 对抗评测专用。law=网络安全法 article=CS-12\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政…"
+        },
+        {
+          "id": "CB-017",
+          "query": "网上造谣传谣扰乱秩序，网络安全法怎么说",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络安全法（切分对抗·造谣传谣）\n\n> 对抗评测专用。law=网络安全法 article=CS-12\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政…"
+        },
+        {
+          "id": "CB-018",
+          "query": "造谣是算不良信息，还是编造传播虚假信息扰乱秩序",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络安全法（切分对抗·造谣传谣）\n\n> 对抗评测专用。law=网络安全法 article=CS-12\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政…"
+        },
+        {
+          "id": "CB-019",
+          "query": "教唆犯罪 凶杀 赌博 网络信息内容生态治理规定",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第五条　网络信息内容生产者应当遵守…"
+        },
+        {
+          "id": "CB-020",
+          "query": "发布色情淫秽内容，生态治理规定哪一条禁止",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第五条　网络信息内容生产者应当遵守…"
+        },
+        {
+          "id": "CB-021",
+          "query": "色情内容是引用生态治理规定哪一项，不要只写不得违法",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第五条　网络信息内容生产者应当遵守…"
+        },
+        {
+          "id": "CB-022",
+          "query": "不得制作 不得传播 复制、发布 互联网信息服务管理办法",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 互联网信息服务管理办法（切分对抗·禁止内容）\n\n> 对抗评测专用。law=互联网信息服务管理办法 article=IIS-15\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十四条　应当记录提供的信息内容及其…"
+        },
+        {
+          "id": "CB-023",
+          "query": "互联网信息服务不得制作传播哪些违法信息",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 互联网信息服务管理办法（切分对抗·禁止内容）\n\n> 对抗评测专用。law=互联网信息服务管理办法 article=IIS-15\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十四条　应当记录提供的信息内容及其…"
+        },
+        {
+          "id": "CB-024",
+          "query": "管理办法里不得制作传播，具体对应哪几项禁止内容",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 互联网信息服务管理办法（切分对抗·禁止内容）\n\n> 对抗评测专用。law=互联网信息服务管理办法 article=IIS-15\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第十四条　应当记录提供的信息内容及其…"
+        },
+        {
+          "id": "CB-025",
+          "query": "肆意谩骂 恶意诋毁 披露隐私 惩治网络暴力指导意见",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-026",
+          "query": "网络谩骂诋毁披露隐私，是治安案件还是刑事案件",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-027",
+          "query": "网络侮辱一定按刑事处理吗，不构成犯罪怎么办",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-028",
+          "query": "完整口径见后半段 转发次数达到五百 依法审查是否属于 两高网络诽谤司法解释",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-029",
+          "query": "诽谤信息转发多少次、点击多少次算情节严重",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-030",
+          "query": "情节严重是五百次点击还是五千次点击，转发怎么算",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-031",
+          "query": "名誉权 社会评价 民事主体 民法典",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 民法典（切分对抗·名誉权）\n\n> 对抗评测专用。law=民法典 article=CC-1024\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰…"
+        },
+        {
+          "id": "CB-032",
+          "query": "名誉权被网络侮辱诽谤侵害，民法典怎么保护",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 民法典（切分对抗·名誉权）\n\n> 对抗评测专用。law=民法典 article=CC-1024\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰…"
+        },
+        {
+          "id": "CB-033",
+          "query": "侵害名誉权是只引治安法，还是民法典也有依据",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 民法典（切分对抗·名誉权）\n\n> 对抗评测专用。law=民法典 article=CC-1024\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰…"
+        },
+        {
+          "id": "CB-034",
+          "query": "微信号 进群领福利 站外引流 平台社区规范",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-035",
+          "query": "评论区留微信号进群领福利算不算站外引流",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-036",
+          "query": "留微信号引流是诈骗罪还是平台站外引流规则",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-037",
+          "query": "诱导沉迷 身心健康 包括暴力 未成年人保护法",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        },
+        {
+          "id": "CB-038",
+          "query": "对未成年人发性暗示或诱导内容，法律禁止什么",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        },
+        {
+          "id": "CB-039",
+          "query": "未成年人保护是只写不得危害，还是要列举性暗示等类型",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_chunk": false,
+          "half_hit_possible": true,
+          "top_has_full_article": false,
+          "top_has_anchor": false,
+          "context_cover_ok": false,
+          "sliding_window_failure_reproduced": true,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        }
+      ]
+    },
+    "parent_child": {
+      "summary": {
+        "strategy": "article_child_section_parent",
+        "total_cases": 39,
+        "intact_rate": 1.0,
+        "context_cover_ok_rate": 1.0,
+        "half_article_failure_rate": 0.0
+      },
+      "results": [
+        {
+          "id": "CB-001",
+          "query": "跟帖评论 弹幕 点赞 网络暴力信息治理规定",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 578,
+          "injected_preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔…"
+        },
+        {
+          "id": "CB-002",
+          "query": "评论区发弹幕骂人、跟帖引战，平台要怎么管，依据哪条",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 578,
+          "injected_preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔…"
+        },
+        {
+          "id": "CB-003",
+          "query": "跟帖评论里的网络暴力，是按第十七条视听节目管还是按评论管理条款",
+          "source_file": "01_网络暴力信息治理规定_NV-18.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 578,
+          "injected_preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔…"
+        },
+        {
+          "id": "CB-004",
+          "query": "信用记录 信用等级 账号信用 网络暴力信息治理规定",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 554,
+          "injected_preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文…"
+        },
+        {
+          "id": "CB-005",
+          "query": "网暴账号要不要记入信用、拉黑名单，法律怎么规定",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 554,
+          "injected_preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文…"
+        },
+        {
+          "id": "CB-006",
+          "query": "网暴用户是限制功能就行，还是要列入黑名单禁止注册",
+          "source_file": "02_网络暴力信息治理规定_NV-14.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 554,
+          "injected_preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文…"
+        },
+        {
+          "id": "CB-007",
+          "query": "公然侮辱 诽谤他人 散布他人隐私 治安管理处罚法",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 577,
+          "injected_preview": "第四十条　有下列行为之一的，处警告或者二百元以下罚款。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（…"
+        },
+        {
+          "id": "CB-008",
+          "query": "网上公开骂人诽谤、散布隐私，治安管理怎么处罚",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 577,
+          "injected_preview": "第四十条　有下列行为之一的，处警告或者二百元以下罚款。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（…"
+        },
+        {
+          "id": "CB-009",
+          "query": "公然侮辱诽谤只罚五日以下吗，有没有情节较重的档",
+          "source_file": "03_治安管理处罚法_PS-42.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 577,
+          "injected_preview": "第四十条　有下列行为之一的，处警告或者二百元以下罚款。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（…"
+        },
+        {
+          "id": "CB-010",
+          "query": "侮辱罪 诽谤罪 剥夺政治权利 刑法",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 616,
+          "injected_preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改…"
+        },
+        {
+          "id": "CB-011",
+          "query": "网络侮辱诽谤什么情况才构成犯罪、要不要自己去告",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 616,
+          "injected_preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改…"
+        },
+        {
+          "id": "CB-012",
+          "query": "网上骂人是直接抠刑法侮辱罪，还是先看治安处罚",
+          "source_file": "04_刑法_CL-246.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 616,
+          "injected_preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改…"
+        },
+        {
+          "id": "CB-013",
+          "query": "非法收集 非法买卖 公开他人 个人信息保护法",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 542,
+          "injected_preview": "第九条　个人信息处理者应当对其个人信息处理活动负责，并采取必要措施保障安全。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…"
+        },
+        {
+          "id": "CB-014",
+          "query": "被人肉搜索曝光身份证电话，个保法能不能管",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 542,
+          "injected_preview": "第九条　个人信息处理者应当对其个人信息处理活动负责，并采取必要措施保障安全。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…"
+        },
+        {
+          "id": "CB-015",
+          "query": "曝光个人信息是删帖就行，还是个保法禁止非法公开",
+          "source_file": "05_个人信息保护法_PI-10.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 542,
+          "injected_preview": "第九条　个人信息处理者应当对其个人信息处理活动负责，并采取必要措施保障安全。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…"
+        },
+        {
+          "id": "CB-016",
+          "query": "遵守公共秩序 尊重社会公德 使用网络应当 网络安全法",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 534,
+          "injected_preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于…"
+        },
+        {
+          "id": "CB-017",
+          "query": "网上造谣传谣扰乱秩序，网络安全法怎么说",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 534,
+          "injected_preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于…"
+        },
+        {
+          "id": "CB-018",
+          "query": "造谣是算不良信息，还是编造传播虚假信息扰乱秩序",
+          "source_file": "06_网络安全法_CS-12.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 534,
+          "injected_preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于…"
+        },
+        {
+          "id": "CB-019",
+          "query": "教唆犯罪 凶杀 赌博 网络信息内容生态治理规定",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 543,
+          "injected_preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…"
+        },
+        {
+          "id": "CB-020",
+          "query": "发布色情淫秽内容，生态治理规定哪一条禁止",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 543,
+          "injected_preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…"
+        },
+        {
+          "id": "CB-021",
+          "query": "色情内容是引用生态治理规定哪一项，不要只写不得违法",
+          "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 543,
+          "injected_preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…"
+        },
+        {
+          "id": "CB-022",
+          "query": "不得制作 不得传播 复制、发布 互联网信息服务管理办法",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 576,
+          "injected_preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权…"
+        },
+        {
+          "id": "CB-023",
+          "query": "互联网信息服务不得制作传播哪些违法信息",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 576,
+          "injected_preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权…"
+        },
+        {
+          "id": "CB-024",
+          "query": "管理办法里不得制作传播，具体对应哪几项禁止内容",
+          "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 576,
+          "injected_preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权…"
+        },
+        {
+          "id": "CB-025",
+          "query": "肆意谩骂 恶意诋毁 披露隐私 惩治网络暴力指导意见",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 638,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-026",
+          "query": "网络谩骂诋毁披露隐私，是治安案件还是刑事案件",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 638,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-027",
+          "query": "网络侮辱一定按刑事处理吗，不构成犯罪怎么办",
+          "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 638,
+          "injected_preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【指导思想】为依法惩治网络暴力…"
+        },
+        {
+          "id": "CB-028",
+          "query": "完整口径见后半段 转发次数达到五百 依法审查是否属于 两高网络诽谤司法解释",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 641,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-029",
+          "query": "诽谤信息转发多少次、点击多少次算情节严重",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 641,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-030",
+          "query": "情节严重是五百次点击还是五千次点击，转发怎么算",
+          "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 641,
+          "injected_preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n利用信息网络诽谤他人，具有下列情形之一…"
+        },
+        {
+          "id": "CB-031",
+          "query": "名誉权 社会评价 民事主体 民法典",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 552,
+          "injected_preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：…"
+        },
+        {
+          "id": "CB-032",
+          "query": "名誉权被网络侮辱诽谤侵害，民法典怎么保护",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 552,
+          "injected_preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：…"
+        },
+        {
+          "id": "CB-033",
+          "query": "侵害名誉权是只引治安法，还是民法典也有依据",
+          "source_file": "11_民法典_CC1024.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 552,
+          "injected_preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：…"
+        },
+        {
+          "id": "CB-034",
+          "query": "微信号 进群领福利 站外引流 平台社区规范",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 623,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-035",
+          "query": "评论区留微信号进群领福利算不算站外引流",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 623,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-036",
+          "query": "留微信号引流是诈骗罪还是平台站外引流规则",
+          "source_file": "12_平台社区规范_PLAT.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 623,
+          "injected_preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】重复发布商业推广、刷屏营销的，按广告骚扰…"
+        },
+        {
+          "id": "CB-037",
+          "query": "诱导沉迷 身心健康 包括暴力 未成年人保护法",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 619,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        },
+        {
+          "id": "CB-038",
+          "query": "对未成年人发性暗示或诱导内容，法律禁止什么",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 619,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        },
+        {
+          "id": "CB-039",
+          "query": "未成年人保护是只写不得危害，还是要列举性暗示等类型",
+          "source_file": "13_未成年人保护法_MIN74.md",
+          "intact_in_single_child": true,
+          "top_child_has_full_article": true,
+          "top_child_has_anchor": true,
+          "parent_has_full_article": true,
+          "parent_has_anchor": true,
+          "context_cover_ok": true,
+          "half_article_failure": false,
+          "parent_len": 619,
+          "injected_preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社区应当加强未成年人网络素养教育。\n\n（过…"
+        }
+      ]
+    }
+  },
+  "retrieve": {
+    "summary": {
+      "total_cases": 39,
+      "fixed_context_cover_ok_rate": 0.0,
+      "parent_child_context_cover_ok_rate": 0.9743589743589743,
+      "improved_case_rate": 0.9743589743589743,
+      "fixed_still_fail": 39,
+      "parent_child_still_fail": 1
+    },
+    "results": [
+      {
+        "id": "CB-001",
+        "query": "跟帖评论 弹幕 点赞 网络暴力信息治理规定",
+        "source_file": "01_网络暴力信息治理规定_NV-18.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-002",
+        "query": "评论区发弹幕骂人、跟帖引战，平台要怎么管，依据哪条",
+        "source_file": "01_网络暴力信息治理规定_NV-18.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-003",
+        "query": "跟帖评论里的网络暴力，是按第十七条视听节目管还是按评论管理条款",
+        "source_file": "01_网络暴力信息治理规定_NV-18.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络暴力信息治理规定（切分对抗·跟帖评论）\n\n> 对抗评测专用。law=网络暴力信息治理规定 article=NV-18\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十七条　网络信息服务提供者应当加强网络视听节目、网络表演等服务内容的管理，发现含有网络暴力信息的，应当及时删除信息或者停止提供相关服务。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-004",
+        "query": "信用记录 信用等级 账号信用 网络暴力信息治理规定",
+        "source_file": "02_网络暴力信息治理规定_NV-14.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-005",
+        "query": "网暴账号要不要记入信用、拉黑名单，法律怎么规定",
+        "source_file": "02_网络暴力信息治理规定_NV-14.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-006",
+        "query": "网暴用户是限制功能就行，还是要列入黑名单禁止注册",
+        "source_file": "02_网络暴力信息治理规定_NV-14.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "法违规情形记入用户信用记录，依法依约降低账号信用等级　　　　　　　　　　　　　　　　　　　　　　　　或者列入黑名单，并据以限制账号功能或者停止提供相关服务。【切分锚点-NV14】对组织、煽动、多次发布…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十三条　网络信息服务提供者应当建立健全网络暴力信息预警模型，及时发现预警风险。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-007",
+        "query": "公然侮辱 诽谤他人 散布他人隐私 治安管理处罚法",
+        "source_file": "03_治安管理处罚法_PS-42.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-008",
+        "query": "网上公开骂人诽谤、散布隐私，治安管理怎么处罚",
+        "source_file": "03_治安管理处罚法_PS-42.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-009",
+        "query": "公然侮辱诽谤只罚五日以下吗，有没有情节较重的档",
+        "source_file": "03_治安管理处罚法_PS-42.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "人或者捏造事实诽谤他人的；（六）偷窥、偷拍、窃听、散布他人隐私的。　　　　　　　　　　　　　　　　　情节较重的，处五日以上十日以下拘留，可以并处五百元以下罚款。【切分锚点-PS42】援引本条必须同时写…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-010",
+        "query": "侮辱罪 诽谤罪 剥夺政治权利 刑法",
+        "source_file": "04_刑法_CL-246.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-011",
+        "query": "网络侮辱诽谤什么情况才构成犯罪、要不要自己去告",
+        "source_file": "04_刑法_CL-246.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-012",
+        "query": "网上骂人是直接抠刑法侮辱罪，还是先看治安处罚",
+        "source_file": "04_刑法_CL-246.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-013",
+        "query": "非法收集 非法买卖 公开他人 个人信息保护法",
+        "source_file": "05_个人信息保护法_PI-10.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百四十六条　以暴力或者其他方法公然侮辱他人或者捏造事实诽谤他人，情节严重的，处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-014",
+        "query": "被人肉搜索曝光身份证电话，个保法能不能管",
+        "source_file": "05_个人信息保护法_PI-10.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第九条　个人信息处理者应当对其个人信息处理活动负责，并采取必要措施保障安全。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-015",
+        "query": "曝光个人信息是删帖就行，还是个保法禁止非法公开",
+        "source_file": "05_个人信息保护法_PI-10.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "提供或者公开他人个人信息；不得从事危害国家安全、公共利益的　　　　　　　　　　　　　　　　　　　　　个人信息处理活动。【切分锚点-PI10】平台处置人肉搜索、曝光身份证类内容时，应提示不得非法公开个人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第九条　个人信息处理者应当对其个人信息处理活动负责，并采取必要措施保障安全。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-016",
+        "query": "遵守公共秩序 尊重社会公德 使用网络应当 网络安全法",
+        "source_file": "06_网络安全法_CS-12.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-017",
+        "query": "网上造谣传谣扰乱秩序，网络安全法怎么说",
+        "source_file": "06_网络安全法_CS-12.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-018",
+        "query": "造谣是算不良信息，还是编造传播虚假信息扰乱秩序",
+        "source_file": "06_网络安全法_CS-12.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "得利用网络编造、传播虚假信息扰乱经济秩序和社会秩序，以及侵害他人　　　　　　　　　　　　　　　　　　名誉、隐私、知识产权和其他合法权益等活动。【切分锚点-CS12】对造谣传谣类内容，援引本条须保留扰乱…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十条　建设、运营网络或者通过网络提供服务，应当依照法律、行政法规的规定和国家标准的强制性要求。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-019",
+        "query": "教唆犯罪 凶杀 赌博 网络信息内容生态治理规定",
+        "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-020",
+        "query": "发布色情淫秽内容，生态治理规定哪一条禁止",
+        "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-021",
+        "query": "色情内容是引用生态治理规定哪一项，不要只写不得违法",
+        "source_file": "07_网络信息内容生态治理规定_ECO-6.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 网络信息内容生态治理规定（切分对抗·淫秽色情）\n\n> 对抗评测专用。law=网络信息内容生态治理规定 article=ECO-6\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-022",
+        "query": "不得制作 不得传播 复制、发布 互联网信息服务管理办法",
+        "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 互联网信息服务管理办法（切分对抗·禁止内容）\n\n> 对抗评测专用。law=互联网信息服务管理办法 article=IIS-15\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-023",
+        "query": "互联网信息服务不得制作传播哪些违法信息",
+        "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "网信息服务提供者还不得传播法律禁止内容。具体包括：　　　　　　　　　　　　　　　　　　　　　　　　　（七）散布谣言，扰乱社会秩序，破坏社会稳定的；（八）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-024",
+        "query": "管理办法里不得制作传播，具体对应哪几项禁止内容",
+        "source_file": "08_互联网信息服务管理办法_IIS-15.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "网信息服务提供者还不得传播法律禁止内容。具体包括：　　　　　　　　　　　　　　　　　　　　　　　　　（七）散布谣言，扰乱社会秩序，破坏社会稳定的；（八）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第五条　网络信息内容生产者应当遵守法律法规，遵循公序良俗。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-025",
+        "query": "肆意谩骂 恶意诋毁 披露隐私 惩治网络暴力指导意见",
+        "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": false,
+          "preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 惩治网络暴力指导意见（切分对抗·侮辱分流）\n\n> 对抗评测专用。law=惩治网络暴力指导意见 article=NVGO-insult\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-026",
+        "query": "网络谩骂诋毁披露隐私，是治安案件还是刑事案件",
+        "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "处三年以下有期徒刑、拘役、管制或者剥夺政治权利。本条涉及侮辱罪、诽谤罪。　　　　　　　　　　　　　　前款罪，告诉的才处理，但是严重危害社会秩序和国家利益的除外。通过信息网络实施第一款规定的行为，被害人…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": false,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": false
+        },
+        "improved": false
+      },
+      {
+        "id": "CB-027",
+        "query": "网络侮辱一定按刑事处理吗，不构成犯罪怎么办",
+        "source_file": "09_惩治网络暴力指导意见_NVGO.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "侮辱他人，情节严重，符合刑法规定的，以侮辱罪定罪处罚。关于分流：　　　　　　　　　　　　　　　　　　实施网络侮辱行为，尚不构成犯罪，符合治安管理处罚法等规定的，依法予以行政处罚。【切分锚点-NVGO】…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第二百三十四条　故意伤害他人身体的，处三年以下有期徒刑、拘役或者管制。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-028",
+        "query": "完整口径见后半段 转发次数达到五百 依法审查是否属于 两高网络诽谤司法解释",
+        "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-029",
+        "query": "诽谤信息转发多少次、点击多少次算情节严重",
+        "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "重。关于点击浏览与转发的完整口径见后半段。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　同一信息实际被点击、浏览次数达到五千次以上，或者转发达到五百次以上的，应当认定为刑法第二百四十六条第…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-030",
+        "query": "情节严重是五百次点击还是五千次点击，转发怎么算",
+        "source_file": "10_两高网络诽谤司法解释_SPC500.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "重。关于点击浏览与转发的完整口径见后半段。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　同一信息实际被点击、浏览次数达到五千次以上，或者转发达到五百次以上的，应当认定为刑法第二百四十六条第…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 两高网络诽谤司法解释（切分对抗·次数门槛）\n\n> 对抗评测专用。law=两高网络诽谤司法解释 article=SPC-500\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-031",
+        "query": "名誉权 社会评价 民事主体 民法典",
+        "source_file": "11_民法典_CC1024.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "他人的名誉权。名誉是对民事主体的品德、声望、才能、信用等的社会评价。　　　　　　　　　　　　　　　　【切分锚点-CC1024】民事路径应写明人格评价定义与禁止侮辱诽谤；若上下文被切断，模型常错误改引治…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-032",
+        "query": "名誉权被网络侮辱诽谤侵害，民法典怎么保护",
+        "source_file": "11_民法典_CC1024.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "他人的名誉权。名誉是对民事主体的品德、声望、才能、信用等的社会评价。　　　　　　　　　　　　　　　　【切分锚点-CC1024】民事路径应写明人格评价定义与禁止侮辱诽谤；若上下文被切断，模型常错误改引治…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-033",
+        "query": "侵害名誉权是只引治安法，还是民法典也有依据",
+        "source_file": "11_民法典_CC1024.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 民法典（切分对抗·名誉权）\n\n> 对抗评测专用。law=民法典 article=CC-1024\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n第一千零三十二条　自然人享有…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第一千零三十二条　自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-034",
+        "query": "微信号 进群领福利 站外引流 平台社区规范",
+        "source_file": "12_平台社区规范_PLAT.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-035",
+        "query": "评论区留微信号进群领福利算不算站外引流",
+        "source_file": "12_平台社区规范_PLAT.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "优惠」「进群领福利」等方式引导用户到外部平台的，构成站外引流。　　　　　　　　　　　　　　　　　　　【切分锚点-PLAT】平台处置依次为：警告删除 → 限制互动 → 封禁账号；不得在仅命中联系方式半段…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-036",
+        "query": "留微信号引流是诈骗罪还是平台站外引流规则",
+        "source_file": "12_平台社区规范_PLAT.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "优惠」「进群领福利」等方式引导用户到外部平台的，构成站外引流。　　　　　　　　　　　　　　　　　　　【切分锚点-PLAT】平台处置依次为：警告删除 → 限制互动 → 封禁账号；不得在仅命中联系方式半段…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 平台社区规范（切分对抗·站外引流）\n\n> 对抗评测专用。law=平台社区规范 article=PLAT-ads\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n【广告骚扰】…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-037",
+        "query": "诱导沉迷 身心健康 包括暴力 未成年人保护法",
+        "source_file": "13_未成年人保护法_MIN74.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-038",
+        "query": "对未成年人发性暗示或诱导内容，法律禁止什么",
+        "source_file": "13_未成年人保护法_MIN74.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "第十四条　应当记录提供的信息内容及其发布时间、互联网地址或者域名。\n\n（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明：本节用于版式占位与上下文衔接，不改变权利义务。）（过渡说明…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      },
+      {
+        "id": "CB-039",
+        "query": "未成年人保护是只写不得危害，还是要列举性暗示等类型",
+        "source_file": "13_未成年人保护法_MIN74.md",
+        "fixed": {
+          "context_cover_ok": false,
+          "has_full": false,
+          "has_anchor": true,
+          "preview": "、传播含有危害未成年人身心健康内容的信息，包括暴力、　　　　　　　　　　　　　　　　　　　　　　　　淫秽色情、血腥恐怖、性暗示以及诱导自杀自伤等。【切分锚点-MIN74】必须保留「性暗示以及诱导自杀自…",
+          "num_injected": 3
+        },
+        "parent_child": {
+          "context_cover_ok": true,
+          "has_full": true,
+          "has_anchor": true,
+          "preview": "# 未成年人保护法相关（切分对抗·不良内容）\n\n> 对抗评测专用。law=未成年人保护法 article=MIN-74\n\n## 背景\n\n本文件用于复现固定窗口切分导致的半条命中与错引风险。\n\n学校、社…",
+          "num_injected": 3,
+          "child_has_full": true
+        },
+        "improved": true
+      }
+    ]
+  },
+  "comparison": {
+    "offline_context_cover_delta": 1.0,
+    "offline_failure_rate_delta": -1.0,
+    "retrieve_context_cover_delta": 0.9743589743589743
+  },
+  "gates": {
+    "offline_passed": true,
+    "retrieve_passed": true,
+    "overall_passed": true
+  }
+}

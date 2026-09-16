@@ -1,0 +1,92 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: shill-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shill_guard?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: shillguard123
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: shillguard123
+      database: 0
+      lettuce:
+        pool:
+          max-active: 8
+          min-idle: 1
+  # ===== 邮件配置（发送邮箱验证码）=====
+  # 把下面带 * 的占位符替换成你的真实邮箱信息。
+  # QQ 邮箱：host=smtp.qq.com, port=465, username=QQ邮箱, password=邮箱授权码(非登录密码)
+  # 163 邮箱：host=smtp.163.com, port=465, username=163邮箱, password=授权码
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 1690904604@qq.com
+    password: akwpsveilxgpcdae
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          # 显式超时（毫秒）：连不上快速失败，避免线程挂死
+          connectiontimeout: 5000
+          timeout: 10000
+          writetimeout: 10000
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# 注意：sys_user.status 是账号状态（0正常/1禁言/2封号），不是软删除标记，
+# 不能用作 logic-delete 字段，否则禁言/封号用户会被当成已删除而查不到。
+# 如需软删除，应单独加 deleted 字段。
+
+# MinIO：注册时自动生成头像上传到这里，和 shill-file 共用同一个 bucket
+minio:
+  endpoint: http://127.0.0.1:9000
+  access-key: minioadmin
+  secret-key: shillguard123
+  bucket-name: shillguard
+
+# ===== 阿里云 PNVS 号码认证服务（发送手机验证码，个人免资质/免签名/免备案）=====
+# 开通步骤：
+#   1. 阿里云控制台搜「号码认证服务 PNVS」→ 开通「短信认证」功能（个人实名即可，无需企业资质）
+#   2. 在控制台「系统签名配置」选一个预置签名，记下其名称
+#   3. 在控制台「系统模板配置」选一个验证码模板，记下其模板 Code
+#   4. 创建 RAM AccessKey，填入下面 access-key-id / access-key-secret
+# 把下面带 * 的占位符替换为你的真实值。
+# 计费：按量 0.042 元/次（失败不计费）；套餐包 100 次 5 元 / 1000 次 50 元。
+aliyun.sms:
+  access-key-id: ${ALIYUN_SMS_ACCESS_KEY_ID:your-access-key-id}
+  access-key-secret: ${ALIYUN_SMS_ACCESS_KEY_SECRET:your-access-key-secret}
+  sign-name: 速通互联验证码        # 控制台预置的系统签名名称（不是自定义签名）
+  template-code: "100001"    # 控制台预置的验证码模板 Code
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+logging:
+  level:
+    com.shillguard: debug
